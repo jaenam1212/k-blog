@@ -1,4 +1,4 @@
-import { PRODUCTS, getProductBySlug, searchProducts, Product } from './products';
+import { fetchProductsFromDb, getProductBySlugAsync, searchProductsAsync, Product } from './products';
 import { Locale, LOCALES } from './i18n';
 
 export const SERVER_INFO = {
@@ -81,9 +81,10 @@ export async function executeMcpTool(name: string, args: Record<string, any>) {
   if (name === 'list_latest_products') {
     const category = args.category || 'all';
     const limit = args.limit || 10;
+    const all = await fetchProductsFromDb();
     const filtered = category === 'all' 
-      ? PRODUCTS 
-      : PRODUCTS.filter((p) => p.category === category);
+      ? all 
+      : all.filter((p) => p.category === category);
 
     const items = filtered.slice(0, limit).map((p) => {
       const loc = p.i18n[lang] || p.i18n.en;
@@ -97,7 +98,7 @@ export async function executeMcpTool(name: string, args: Record<string, any>) {
         rating: p.rating,
         title: loc.title,
         summary: loc.summary,
-        url: `https://k-trendbox.com/${lang}/post/${p.slug}`,
+        url: `https://k-blog-ten.vercel.app/${lang}/post/${p.slug}`,
       };
     });
 
@@ -112,7 +113,7 @@ export async function executeMcpTool(name: string, args: Record<string, any>) {
   }
 
   if (name === 'get_product_detail') {
-    const product = getProductBySlug(args.slug);
+    const product = await getProductBySlugAsync(args.slug);
     if (!product) {
       return {
         isError: true,
@@ -135,7 +136,7 @@ export async function executeMcpTool(name: string, args: Record<string, any>) {
       tasteReview: loc.tasteReview,
       tips: loc.tips,
       affiliateUrl: product.affiliateUrl,
-      canonicalUrl: `https://k-trendbox.com/${lang}/post/${product.slug}`,
+      canonicalUrl: `https://k-blog-ten.vercel.app/${lang}/post/${product.slug}`,
     };
 
     return {
@@ -149,14 +150,15 @@ export async function executeMcpTool(name: string, args: Record<string, any>) {
   }
 
   if (name === 'search_k_trends') {
-    const results = searchProducts(args.query, lang).map((p) => {
+    const matches = await searchProductsAsync(args.query, lang);
+    const results = matches.map((p) => {
       const loc = p.i18n[lang] || p.i18n.en;
       return {
         slug: p.slug,
         title: loc.title,
         store: p.store,
         priceKrw: p.priceKrw,
-        url: `https://k-trendbox.com/${lang}/post/${p.slug}`,
+        url: `https://k-blog-ten.vercel.app/${lang}/post/${p.slug}`,
       };
     });
 

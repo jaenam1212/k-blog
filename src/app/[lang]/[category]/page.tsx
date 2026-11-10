@@ -1,11 +1,13 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getProductsByCategory } from '@/lib/products';
+import { getProductsByCategoryAsync } from '@/lib/products';
 import { Locale, DICTIONARY } from '@/lib/i18n';
 import { ProductCard } from '@/components/ProductCard';
 import { AdSenseSlot } from '@/components/AdSenseSlot';
 
 const VALID_CATEGORIES = ['convenience-food', 'k-beauty', 'k-fashion'];
+
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const params: { lang: string; category: string }[] = [];
@@ -31,7 +33,7 @@ export default async function CategoryPage({
   }
 
   const dict = DICTIONARY[currentLang] || DICTIONARY.en;
-  const products = getProductsByCategory(category);
+  const products = await getProductsByCategoryAsync(category);
 
   const categoryNames: Record<string, string> = {
     'convenience-food': dict.convenienceFood,

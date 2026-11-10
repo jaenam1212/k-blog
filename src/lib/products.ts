@@ -22,7 +22,7 @@ export interface Product {
   i18n: Record<Locale, LocalizedContent>;
 }
 
-export const PRODUCTS: Product[] = [
+export const FALLBACK_PRODUCTS: Product[] = [
   {
     id: 'cu-strawberry-choco-sand-202611',
     slug: 'cu-strawberry-choco-whip-castella-sand',
@@ -175,7 +175,7 @@ export const PRODUCTS: Product[] = [
       },
       ja: {
         title: '韓国MUSINSA新作「カシミヤブレンドバルマカーンローブコート」着こなし＆サイズ感',
-        summary: '日韓同時展開の注目アウター！上質なカシミヤ混素材とミニマルなソウルストリートの洗練シルエット。',
+        summary: '日韓同時展開の注目アウター！上質なカシミヤ混素材とミニマルなソウルストリート의 洗練シルエット。',
         description: '韓国最大のファッション通販ムシンサ（MUSINSA）のオリジナルブランドが発表した冬の本命コート。加藤順子氏とのコラボキャンペーンでも話題を呼び、上質な光沢感と美しい落ち感が魅力です。',
         tasteReview: [
           'カシミヤ混ならではの軽やかさと保温性、チクチク感のない極上の肌触り',
@@ -199,18 +199,67 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://jmuqmvxubuwhoocuknnt.supabase.co';
+const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImptdXFtdnh1YnV3aG9vY3Vrbm50Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQzMDgwNzcsImV4cCI6MjEwOTg4NDA3N30.wgl1-ohyWwTlg2rishdaqXA8jBeFgjQ3qyfINY5sc5A';
+
+export const PRODUCTS = FALLBACK_PRODUCTS;
+
+export async function fetchProductsFromDb(): Promise<Product[]> {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/posts?select=slug,data&order=id.desc`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+      },
+      next: { revalidate: 60, tags: ['posts'] },
+    });
+    if (!res.ok) throw new Error(`Supabase returned status ${res.status}`);
+    const rows = await res.json();
+    if (Array.isArray(rows) && rows.length > 0) {
+      return rows.map((r: any) => r.data as Product);
+    }
+  } catch (err) {
+    console.error('Supabase fetch failed, falling back to static list:', err);
+  }
+  return FALLBACK_PRODUCTS;
+}
+
+export async function getProductBySlugAsync(slug: string): Promise<Product | undefined> {
+  const all = await fetchProductsFromDb();
+  return all.find((p) => p.slug === slug);
+}
+
+export async function getProductsByCategoryAsync(category?: string): Promise<Product[]> {
+  const all = await fetchProductsFromDb();
+  if (!category || category === 'all') return all;
+  return all.filter((p) => p.category === category);
+}
+
+export async function searchProductsAsync(query: string, lang: Locale = 'en'): Promise<Product[]> {
+  const all = await fetchProductsFromDb();
+  const q = query.toLowerCase();
+  return all.filter((p) => {
+    const loc = p.i18n[lang] || p.i18n.en;
+    return (
+      loc.title.toLowerCase().includes(q) ||
+      loc.summary.toLowerCase().includes(q) ||
+      p.store.toLowerCase().includes(q)
+    );
+  });
+}
+
 export function getProductBySlug(slug: string): Product | undefined {
-  return PRODUCTS.find((p) => p.slug === slug);
+  return FALLBACK_PRODUCTS.find((p) => p.slug === slug);
 }
 
 export function getProductsByCategory(category?: string): Product[] {
-  if (!category || category === 'all') return PRODUCTS;
-  return PRODUCTS.filter((p) => p.category === category);
+  if (!category || category === 'all') return FALLBACK_PRODUCTS;
+  return FALLBACK_PRODUCTS.filter((p) => p.category === category);
 }
 
 export function searchProducts(query: string, lang: Locale = 'en'): Product[] {
   const q = query.toLowerCase();
-  return PRODUCTS.filter((p) => {
+  return FALLBACK_PRODUCTS.filter((p) => {
     const loc = p.i18n[lang] || p.i18n.en;
     return (
       loc.title.toLowerCase().includes(q) ||

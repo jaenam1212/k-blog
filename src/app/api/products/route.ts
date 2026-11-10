@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PRODUCTS, getProductsByCategory, searchProducts } from '@/lib/products';
+import { fetchProductsFromDb, getProductsByCategoryAsync, searchProductsAsync } from '@/lib/products';
 import { Locale } from '@/lib/i18n';
+
+export const revalidate = 60;
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -8,10 +10,12 @@ export async function GET(req: NextRequest) {
   const query = searchParams.get('q');
   const lang = (searchParams.get('lang') || 'en') as Locale;
 
-  let items = category === 'all' ? PRODUCTS : getProductsByCategory(category);
+  let items = category === 'all' 
+    ? await fetchProductsFromDb() 
+    : await getProductsByCategoryAsync(category);
 
   if (query) {
-    items = searchProducts(query, lang);
+    items = await searchProductsAsync(query, lang);
   }
 
   const localizedItems = items.map((p) => {
@@ -28,7 +32,7 @@ export async function GET(req: NextRequest) {
       summary: loc.summary,
       tasteReview: loc.tasteReview,
       tips: loc.tips,
-      url: `https://k-trendbox.com/${lang}/post/${p.slug}`,
+      url: `https://k-blog-ten.vercel.app/${lang}/post/${p.slug}`,
       affiliateUrl: p.affiliateUrl,
     };
   });

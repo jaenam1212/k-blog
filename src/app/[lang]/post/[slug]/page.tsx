@@ -1,14 +1,17 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getProductBySlug, PRODUCTS } from '@/lib/products';
+import { getProductBySlugAsync, fetchProductsFromDb } from '@/lib/products';
 import { Locale, DICTIONARY, LOCALES } from '@/lib/i18n';
 import { AdSenseSlot } from '@/components/AdSenseSlot';
 import { AffiliateButton } from '@/components/AffiliateButton';
 
+export const revalidate = 60;
+
 export async function generateStaticParams() {
+  const products = await fetchProductsFromDb();
   const params: { lang: string; slug: string }[] = [];
   for (const lang of LOCALES) {
-    for (const product of PRODUCTS) {
+    for (const product of products) {
       params.push({ lang, slug: product.slug });
     }
   }
@@ -21,7 +24,7 @@ export async function generateMetadata({
   params: Promise<{ lang: string; slug: string }>;
 }) {
   const { lang, slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlugAsync(slug);
   if (!product) return {};
 
   const content = product.i18n[lang as Locale] || product.i18n.en;
@@ -53,7 +56,7 @@ export default async function ProductDetailPage({
 }) {
   const { lang, slug } = await params;
   const currentLang = lang as Locale;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlugAsync(slug);
 
   if (!product) {
     notFound();

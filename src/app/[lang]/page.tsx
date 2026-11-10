@@ -1,8 +1,10 @@
 import Link from 'next/link';
-import { PRODUCTS } from '@/lib/products';
+import { fetchProductsFromDb } from '@/lib/products';
 import { Locale, DICTIONARY } from '@/lib/i18n';
 import { ProductCard } from '@/components/ProductCard';
 import { AdSenseSlot } from '@/components/AdSenseSlot';
+
+export const revalidate = 60;
 
 export default async function HomePage({
   params,
@@ -12,6 +14,7 @@ export default async function HomePage({
   const { lang } = await params;
   const currentLang = lang as Locale;
   const dict = DICTIONARY[currentLang] || DICTIONARY.en;
+  const products = await fetchProductsFromDb();
 
   return (
     <div>
@@ -61,12 +64,12 @@ export default async function HomePage({
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-black text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
             <span>🔥</span>
-            <span>Latest 2026 Releases ({PRODUCTS.length})</span>
+            <span>Latest 2026 Releases ({products.length})</span>
           </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PRODUCTS.map((product) => (
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} lang={currentLang} />
           ))}
         </div>

@@ -27,12 +27,12 @@ export function ProductCard({ product, lang }: { product: Product; lang: Locale 
           />
         </Link>
 
-        <div className="flex items-center gap-2 text-[11px] font-mono text-zinc-400 dark:text-zinc-500 mb-2">
-          <span>{product.store}</span>
-          <span>·</span>
-          <span>{categoryLabels[product.category] || product.category}</span>
-          <span>·</span>
-          <span>{product.releaseDate}</span>
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] font-mono text-zinc-400 dark:text-zinc-500 mb-2">
+          <span className="whitespace-nowrap">{product.store}</span>
+          <span className="text-zinc-300 dark:text-zinc-700 select-none">·</span>
+          <span className="whitespace-nowrap">{categoryLabels[product.category] || product.category}</span>
+          <span className="text-zinc-300 dark:text-zinc-700 select-none">·</span>
+          <span className="whitespace-nowrap">{product.releaseDate}</span>
         </div>
 
         <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors leading-snug tracking-tight">

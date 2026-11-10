@@ -1,0 +1,17 @@
+# K-Trend Box (Korea Trend & Convenience Store New Releases)
+> The premier multilingual archive of Korean convenience store (CU, GS25, 7-Eleven) new snacks, K-Beauty, and K-Fashion trends for international visitors and K-culture enthusiasts.
+
+- Languages supported: Korean (ko), English (en), Japanese (ja), Chinese (zh)
+- MCP Server Endpoint: POST /api/mcp
+- API Catalog: GET /api/products
+- Updates: Daily new releases curated from official Korean retail channels
+
+## Core Categories
+- [Convenience Food](/en/convenience-food): New viral ramyeon, bakery, desserts, lunchboxes, and drinks from CU, GS25, 7-Eleven, Emart24.
+- [K-Beauty](/en/k-beauty): Trending skincare, hydration essentials, and Olive Young monthly award items.
+- [K-Fashion](/en/k-fashion): Seasonal trending outerwear, minimalist knitwear, and Musinsa top seller breakdowns.
+
+## Machine Readable & AI Agent Endpoints
+- MCP Server (JSON-RPC 2.0 Streamable HTTP): `/api/mcp` (Tools: `list_latest_products`, `get_product_detail`, `search_trend`)
+- Full content text stream: `/llms-full.txt`
+- REST JSON API: `/api/products`

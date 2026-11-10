@@ -1,0 +1,12 @@
+{
+  "name": "k-trend-box-mcp",
+  "version": "1.0.0",
+  "description": "MCP server providing real-time data on Korean convenience store food new releases, K-Beauty, and K-Fashion",
+  "endpoint": "/api/mcp",
+  "protocolVersion": "2024-11-05",
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    }
+  }
+}

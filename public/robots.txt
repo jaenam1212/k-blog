@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Dedicated permissions and crawl directives for AI Search & Agent crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://k-trendbox.com/sitemap.xml

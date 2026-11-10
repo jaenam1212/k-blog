@@ -18,43 +18,40 @@ export default async function HomePage({
 
   return (
     <div>
-      {/* Hero section */}
-      <section className="mb-10 text-center py-8 px-4 rounded-3xl bg-gradient-to-b from-rose-50/70 to-amber-50/40 dark:from-neutral-900 dark:to-neutral-900/50 border border-rose-100 dark:border-neutral-800">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full text-xs font-semibold text-rose-600 dark:text-rose-400 mb-4 shadow-sm">
-          <span>{dict.aiSearchNotice}</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-black text-neutral-900 dark:text-neutral-100 tracking-tight leading-tight">
+      {/* Editorial Header */}
+      <section className="py-8 sm:py-12 border-b border-zinc-200/80 dark:border-zinc-800/80 mb-10">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
           {dict.siteName}
         </h1>
-        <p className="mt-3 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+        <p className="mt-3 text-sm sm:text-base text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed">
           {dict.siteTagline}
         </p>
 
-        {/* Category Pills */}
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        {/* Category Filter Pills */}
+        <div className="mt-6 flex flex-wrap items-center gap-2 text-xs">
           <Link
             href={`/${currentLang}`}
-            className="px-4 py-2 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 text-xs font-bold rounded-xl shadow-sm"
+            className="px-3 py-1.5 rounded-full bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-medium"
           >
             {dict.allCategories}
           </Link>
           <Link
             href={`/${currentLang}/convenience-food`}
-            className="px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:border-rose-400 text-neutral-700 dark:text-neutral-300 text-xs font-bold rounded-xl transition-colors"
+            className="px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors"
           >
-            🍙 {dict.convenienceFood}
+            {dict.convenienceFood}
           </Link>
           <Link
             href={`/${currentLang}/k-beauty`}
-            className="px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:border-rose-400 text-neutral-700 dark:text-neutral-300 text-xs font-bold rounded-xl transition-colors"
+            className="px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors"
           >
-            ✨ {dict.kBeauty}
+            {dict.kBeauty}
           </Link>
           <Link
             href={`/${currentLang}/k-fashion`}
-            className="px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:border-rose-400 text-neutral-700 dark:text-neutral-300 text-xs font-bold rounded-xl transition-colors"
+            className="px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors"
           >
-            🧥 {dict.kFashion}
+            {dict.kFashion}
           </Link>
         </div>
       </section>
@@ -62,13 +59,15 @@ export default async function HomePage({
       {/* Main Grid */}
       <section>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-black text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
-            <span>🔥</span>
-            <span>Latest 2026 Releases ({products.length})</span>
+          <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+            Recent Articles
           </h2>
+          <span className="text-xs text-zinc-400 font-mono">
+            {products.length} {products.length === 1 ? 'item' : 'items'}
+          </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} lang={currentLang} />
           ))}

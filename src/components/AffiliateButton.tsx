@@ -15,34 +15,34 @@ export function AffiliateButton({
 }: AffiliateButtonProps) {
   const dict = DICTIONARY[lang] || DICTIONARY.en;
 
-  const platformBadge: Record<string, { name: string; color: string }> = {
-    Coupang: { name: 'Coupang Rocket', color: 'bg-rose-600 hover:bg-rose-700' },
-    Musinsa: { name: 'Musinsa Store', color: 'bg-neutral-900 hover:bg-black' },
-    OliveYoung: { name: 'Olive Young', color: 'bg-emerald-600 hover:bg-emerald-700' },
-    ConvenienceStore: { name: 'Official Store', color: 'bg-blue-600 hover:bg-blue-700' },
+  const platformNames: Record<string, string> = {
+    Coupang: '쿠팡',
+    Musinsa: '무신사 스토어',
+    OliveYoung: '올리브영',
+    ConvenienceStore: '공식 판매처',
   };
 
-  const badge = platformBadge[platform] || platformBadge.ConvenienceStore;
+  const storeName = platformNames[platform] || '공식 판매처';
 
   return (
-    <div className="my-6 p-5 bg-gradient-to-r from-rose-50 to-amber-50 dark:from-neutral-900 dark:to-neutral-800 rounded-2xl border border-rose-200 dark:border-neutral-700 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+    <div className="my-8 p-5 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50/70 dark:bg-zinc-900/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
       <div>
-        <p className="text-xs uppercase font-bold tracking-wider text-rose-600 dark:text-rose-400">
-          Official Deal / Stock Check
-        </p>
-        <p className="text-lg font-black text-neutral-900 dark:text-neutral-100">
+        <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-400">
+          {storeName}
+        </div>
+        <div className="text-xl font-bold text-zinc-900 dark:text-zinc-100 font-mono mt-0.5">
           ₩{priceKrw.toLocaleString('ko-KR')}
-        </p>
+        </div>
       </div>
 
       <a
         href={url}
         target="_blank"
         rel="noopener noreferrer sponsored"
-        className={`w-full sm:w-auto px-6 py-3 rounded-xl text-white font-bold text-sm shadow-md transition-all text-center flex items-center justify-center gap-2 ${badge.color}`}
+        className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-white text-xs font-medium transition-colors"
       >
         <span>{dict.shoppingLink}</span>
-        <span className="text-xs opacity-80 font-normal">({badge.name})</span>
+        <span>→</span>
       </a>
     </div>
   );

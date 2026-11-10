@@ -11,20 +11,19 @@ export function AdSenseSlot({
   format = 'auto',
   className = '',
 }: AdSenseSlotProps) {
-  // In production, replace with actual Google AdSense client ID
   const isDev = process.env.NODE_ENV !== 'production';
 
   return (
     <aside
-      className={`my-8 p-4 bg-neutral-50 dark:bg-neutral-900 border border-dashed border-neutral-300 dark:border-neutral-800 rounded-xl text-center text-xs text-neutral-400 ${className}`}
-      aria-label="Sponsored Advertisement"
+      className={`my-10 p-4 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-lg text-center ${className}`}
+      aria-label="Advertisement"
     >
-      <div className="text-[10px] uppercase font-mono tracking-wider mb-2 text-neutral-400">
-        SPONSORED ADVERTISEMENT
+      <div className="text-[10px] uppercase font-mono tracking-wider text-zinc-400 mb-2">
+        SPONSORED
       </div>
-      <div className="min-h-[100px] flex items-center justify-center font-mono bg-neutral-100 dark:bg-neutral-800/50 rounded-lg p-4">
+      <div className="min-h-[90px] flex items-center justify-center font-mono text-xs text-zinc-400 bg-zinc-50 dark:bg-zinc-900/50 rounded p-4">
         {isDev ? (
-          <span>[Google AdSense Responsive Slot: {slotId} ({format})]</span>
+          <span>[AdSense Placement · {slotId}]</span>
         ) : (
           <ins
             className="adsbygoogle"

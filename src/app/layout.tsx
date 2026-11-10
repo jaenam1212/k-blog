@@ -3,8 +3,8 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://k-trendbox.com'),
-  title: 'K-Trend Box | Korean Convenience Food & K-Beauty Multilingual Guide',
-  description: 'Real-time Korean convenience store food (CU, GS25, 7-Eleven) new snacks, K-Beauty, and K-Fashion guides in Korean, English, Japanese, and Chinese. MCP & AI-search ready.',
+  title: 'K-Trend Archive | Korean Trend Guide',
+  description: 'Curated editorial guide to latest Korean convenience food, beauty, and fashion releases in 4 languages.',
   alternates: {
     types: {
       'text/markdown': '/llms.txt',
@@ -23,7 +23,7 @@ export default function RootLayout({
         <link rel="describedby" href="/llms.txt" />
         <link rel="service-desc" href="/api/mcp" />
       </head>
-      <body className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 antialiased selection:bg-rose-500 selection:text-white">
+      <body className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased selection:bg-zinc-200 dark:selection:bg-zinc-800">
         {children}
       </body>
     </html>

@@ -5,30 +5,31 @@ export function Footer({ lang }: { lang: Locale }) {
   const dict = DICTIONARY[lang] || DICTIONARY.en;
 
   return (
-    <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 py-10 mt-16 text-xs text-neutral-500">
-      <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer className="border-t border-zinc-200/80 dark:border-zinc-800/80 mt-20 py-12 text-xs text-zinc-500">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
         <div>
-          <p className="font-bold text-neutral-800 dark:text-neutral-200 text-sm mb-1">
+          <p className="font-semibold text-zinc-800 dark:text-zinc-200 text-sm">
             {dict.siteName}
           </p>
-          <p>{dict.siteTagline}</p>
-          <p className="mt-2 text-[11px] text-neutral-400">
-            © 2026 K-Trend Box. Built with Next.js & Model Context Protocol.
+          <p className="mt-1 text-xs text-zinc-400">
+            {dict.siteTagline}
+          </p>
+          <p className="mt-3 text-[11px] text-zinc-400">
+            © 2026 K-Trend Archive. All rights reserved.
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-4">
-          <Link href="/llms.txt" className="hover:text-rose-500 underline underline-offset-4">
+        <div className="flex flex-wrap items-center gap-3 text-[11px] font-mono text-zinc-400">
+          <Link href="/llms.txt" className="hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">
             llms.txt
           </Link>
-          <Link href="/llms-full.txt" className="hover:text-rose-500 underline underline-offset-4">
-            llms-full.txt
+          <span>/</span>
+          <Link href="/api/mcp" className="hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">
+            mcp
           </Link>
-          <Link href="/api/mcp" className="hover:text-rose-500 underline underline-offset-4 font-mono">
-            /api/mcp (JSON-RPC)
-          </Link>
-          <Link href="/api/products" className="hover:text-rose-500 underline underline-offset-4 font-mono">
-            /api/products
+          <span>/</span>
+          <Link href="/api/products" className="hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">
+            api
           </Link>
         </div>
       </div>

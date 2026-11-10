@@ -13,53 +13,50 @@ export function ProductCard({ product, lang }: { product: Product; lang: Locale 
   };
 
   return (
-    <article className="group bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden hover:shadow-xl hover:border-rose-300 dark:hover:border-rose-800 transition-all flex flex-col">
-      <Link href={`/${lang}/post/${product.slug}`} className="relative block aspect-[16/10] overflow-hidden bg-neutral-100 dark:bg-neutral-800">
-        <img
-          src={product.imageUrl}
-          alt={content.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          loading="lazy"
-        />
-        <div className="absolute top-3 left-3 flex gap-2">
-          <span className="px-2.5 py-1 bg-neutral-900/80 backdrop-blur text-white text-xs font-bold rounded-full">
-            {product.store}
-          </span>
-          <span className="px-2.5 py-1 bg-rose-600/90 backdrop-blur text-white text-xs font-bold rounded-full">
-            {categoryLabels[product.category]}
-          </span>
-        </div>
-      </Link>
+    <article className="group flex flex-col justify-between p-5 rounded-xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900/30 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all">
+      <div>
+        <Link
+          href={`/${lang}/post/${product.slug}`}
+          className="block aspect-[16/10] overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-800 mb-4 border border-zinc-100 dark:border-zinc-800/60"
+        >
+          <img
+            src={product.imageUrl}
+            alt={content.title}
+            className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+            loading="lazy"
+          />
+        </Link>
 
-      <div className="p-5 flex-1 flex flex-col justify-between">
-        <div>
-          <div className="flex items-center justify-between text-xs text-neutral-500 mb-2">
-            <span>{product.releaseDate}</span>
-            <span className="text-amber-500 font-bold">★ {product.rating.toFixed(1)}</span>
-          </div>
-
-          <h2 className="text-base font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-rose-600 transition-colors line-clamp-2 leading-snug">
-            <Link href={`/${lang}/post/${product.slug}`}>
-              {content.title}
-            </Link>
-          </h2>
-
-          <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2">
-            {content.summary}
-          </p>
+        <div className="flex items-center gap-2 text-[11px] font-mono text-zinc-400 dark:text-zinc-500 mb-2">
+          <span>{product.store}</span>
+          <span>·</span>
+          <span>{categoryLabels[product.category] || product.category}</span>
+          <span>·</span>
+          <span>{product.releaseDate}</span>
         </div>
 
-        <div className="mt-4 pt-3 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between">
-          <span className="text-sm font-extrabold text-neutral-900 dark:text-neutral-100">
-            ₩{product.priceKrw.toLocaleString('ko-KR')}
-          </span>
-          <Link
-            href={`/${lang}/post/${product.slug}`}
-            className="text-xs font-semibold text-rose-600 dark:text-rose-400 group-hover:translate-x-1 transition-transform"
-          >
-            {dict.readMore} →
+        <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors leading-snug tracking-tight">
+          <Link href={`/${lang}/post/${product.slug}`}>
+            {content.title}
           </Link>
-        </div>
+        </h2>
+
+        <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed">
+          {content.summary}
+        </p>
+      </div>
+
+      <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs">
+        <span className="font-semibold text-zinc-900 dark:text-zinc-100 font-mono">
+          ₩{product.priceKrw.toLocaleString('ko-KR')}
+        </span>
+        <Link
+          href={`/${lang}/post/${product.slug}`}
+          className="text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 font-medium inline-flex items-center gap-1 transition-colors"
+        >
+          {dict.readMore}
+          <span>→</span>
+        </Link>
       </div>
     </article>
   );

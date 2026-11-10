@@ -35,7 +35,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${content.title} | K-Trend Box`,
+    title: `${content.title} | K-Trend Archive`,
     description: content.summary,
     alternates: {
       canonical: `https://k-trendbox.com/${lang}/post/${slug}`,
@@ -65,7 +65,12 @@ export default async function ProductDetailPage({
   const dict = DICTIONARY[currentLang] || DICTIONARY.en;
   const content = product.i18n[currentLang] || product.i18n.en;
 
-  // Schema.org Structured Data for Google Rich Snippets & AI Engines (Perplexity, SearchGPT)
+  const categoryLabels: Record<string, string> = {
+    'convenience-food': dict.convenienceFood,
+    'k-beauty': dict.kBeauty,
+    'k-fashion': dict.kFashion,
+  };
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -92,7 +97,7 @@ export default async function ProductDetailPage({
       },
       author: {
         '@type': 'Person',
-        name: 'K-Trend Box Editorial Team',
+        name: 'K-Trend Archive',
       },
       reviewBody: content.description,
     },
@@ -104,44 +109,46 @@ export default async function ProductDetailPage({
   };
 
   return (
-    <article className="max-w-3xl mx-auto">
-      {/* Inject Structured Data JSON-LD */}
+    <article className="max-w-2xl mx-auto py-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      {/* Back Link */}
       <div className="mb-6">
         <Link
           href={`/${currentLang}/${product.category}`}
-          className="text-xs font-semibold text-rose-600 dark:text-rose-400 hover:underline inline-block mb-3"
+          className="text-xs text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors inline-flex items-center gap-1"
         >
-          ← {product.category}
+          <span>←</span>
+          <span>{categoryLabels[product.category] || product.category}</span>
         </Link>
+      </div>
 
-        <div className="flex flex-wrap items-center gap-2 mb-3">
-          <span className="px-2.5 py-1 bg-neutral-900 text-white text-xs font-bold rounded-full">
-            {product.store}
-          </span>
-          <span className="text-xs text-neutral-500">
-            {dict.releasedDate}: {product.releaseDate}
-          </span>
-          <span className="text-xs text-amber-500 font-bold ml-auto">
-            ★ {product.rating.toFixed(1)} / 5.0
+      {/* Header Info */}
+      <header className="mb-8">
+        <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 dark:text-zinc-500 mb-3">
+          <span>{product.store}</span>
+          <span>·</span>
+          <span>{product.releaseDate}</span>
+          <span>·</span>
+          <span className="font-semibold text-zinc-700 dark:text-zinc-300">
+            ₩{product.priceKrw.toLocaleString('ko-KR')}
           </span>
         </div>
 
-        <h1 className="text-2xl sm:text-3xl font-black text-neutral-900 dark:text-neutral-100 leading-snug">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-snug">
           {content.title}
         </h1>
 
-        <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
+        <p className="mt-4 text-sm sm:text-base text-zinc-500 dark:text-zinc-400 leading-relaxed">
           {content.summary}
         </p>
-      </div>
+      </header>
 
       {/* Featured Image */}
-      <div className="rounded-2xl overflow-hidden aspect-[16/10] bg-neutral-100 dark:bg-neutral-800 mb-6 shadow-md">
+      <div className="rounded-xl overflow-hidden aspect-[16/10] bg-zinc-100 dark:bg-zinc-800 my-8 border border-zinc-100 dark:border-zinc-800/80">
         <img
           src={product.imageUrl}
           alt={content.title}
@@ -153,25 +160,29 @@ export default async function ProductDetailPage({
       <AdSenseSlot slotId="post-top-content" />
 
       {/* Main Review Body */}
-      <div className="prose dark:prose-invert max-w-none text-neutral-800 dark:text-neutral-200 text-sm sm:text-base leading-relaxed space-y-6">
-        <p>{content.description}</p>
+      <div className="text-sm sm:text-base leading-relaxed text-zinc-700 dark:text-zinc-300 space-y-6">
+        <p className="whitespace-pre-line leading-relaxed">
+          {content.description}
+        </p>
 
-        <div className="my-6 p-5 bg-neutral-100 dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800">
-          <h2 className="text-base font-bold text-neutral-900 dark:text-neutral-100 mb-3 flex items-center gap-2">
-            <span>✨</span>
-            <span>{dict.tasteSummary}</span>
+        {/* Highlights box */}
+        <div className="my-8 p-6 rounded-xl border border-zinc-200/80 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/30">
+          <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3">
+            {dict.tasteSummary}
           </h2>
-          <ul className="space-y-2 list-disc list-inside text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+          <ul className="space-y-2 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
             {content.tasteReview.map((point, idx) => (
-              <li key={idx} className="leading-relaxed">
-                {point}
+              <li key={idx} className="flex items-start gap-2 leading-relaxed">
+                <span className="text-zinc-400 select-none">•</span>
+                <span>{point}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="my-6 p-4 bg-amber-50 dark:bg-amber-950/40 rounded-xl border border-amber-200 dark:border-amber-900/60 text-amber-900 dark:text-amber-200 text-xs sm:text-sm">
-          <strong>💡 Local Pro Tip: </strong>
+        {/* Editor Tip */}
+        <div className="my-6 pl-4 border-l-2 border-zinc-900 dark:border-zinc-200 py-1 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+          <span className="font-semibold text-zinc-900 dark:text-zinc-100 mr-2">Note:</span>
           <span>{content.tips}</span>
         </div>
       </div>

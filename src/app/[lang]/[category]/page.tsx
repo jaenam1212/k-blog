@@ -43,22 +43,22 @@ export default async function CategoryPage({
 
   return (
     <div>
-      <div className="mb-8">
+      <div className="py-6 sm:py-10 border-b border-zinc-200/80 dark:border-zinc-800/80 mb-8">
         <Link
           href={`/${currentLang}`}
-          className="text-xs font-semibold text-rose-600 dark:text-rose-400 hover:underline mb-2 inline-block"
+          className="text-xs text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors inline-block mb-3"
         >
           ← {dict.allCategories}
         </Link>
-        <h1 className="text-2xl sm:text-3xl font-black text-neutral-900 dark:text-neutral-100">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
           {categoryNames[category]}
         </h1>
-        <p className="mt-1 text-xs text-neutral-500">
-          Showing {products.length} curated items
+        <p className="mt-2 text-xs text-zinc-400 font-mono">
+          {products.length} {products.length === 1 ? 'article' : 'articles'}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} lang={currentLang} />
         ))}

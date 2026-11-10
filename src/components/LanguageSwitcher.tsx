@@ -2,12 +2,18 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Locale, LOCALES, LOCALE_NAMES } from '@/lib/i18n';
+import { Locale, LOCALES } from '@/lib/i18n';
+
+const SHORT_LABELS: Record<Locale, string> = {
+  ko: 'KO',
+  en: 'EN',
+  ja: 'JA',
+  zh: 'ZH',
+};
 
 export function LanguageSwitcher({ currentLang }: { currentLang: Locale }) {
   const pathname = usePathname() || '/';
 
-  // Replace existing language segment in url
   const getUrlForLocale = (loc: Locale) => {
     const segments = pathname.split('/').filter(Boolean);
     if (segments.length === 0) return `/${loc}`;
@@ -19,21 +25,25 @@ export function LanguageSwitcher({ currentLang }: { currentLang: Locale }) {
   };
 
   return (
-    <div className="flex items-center gap-1 bg-neutral-100 dark:bg-neutral-800 p-1 rounded-lg text-xs font-medium">
-      {LOCALES.map((loc) => {
+    <div className="flex items-center gap-1.5 text-[11px] font-mono">
+      {LOCALES.map((loc, idx) => {
         const isActive = loc === currentLang;
         return (
-          <Link
-            key={loc}
-            href={getUrlForLocale(loc)}
-            className={`px-2 py-1 rounded transition-colors ${
-              isActive
-                ? 'bg-white dark:bg-neutral-900 text-rose-600 dark:text-rose-400 font-bold shadow-sm'
-                : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
-            }`}
-          >
-            {LOCALE_NAMES[loc]}
-          </Link>
+          <span key={loc} className="flex items-center gap-1.5">
+            <Link
+              href={getUrlForLocale(loc)}
+              className={`transition-colors ${
+                isActive
+                  ? 'font-bold text-zinc-950 dark:text-zinc-100 underline underline-offset-4 decoration-1'
+                  : 'text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300'
+              }`}
+            >
+              {SHORT_LABELS[loc]}
+            </Link>
+            {idx < LOCALES.length - 1 && (
+              <span className="text-zinc-300 dark:text-zinc-700 select-none">/</span>
+            )}
+          </span>
         );
       })}
     </div>

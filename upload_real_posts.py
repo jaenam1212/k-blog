@@ -13,7 +13,7 @@ real_products = [
     "priceKrw": 5900,
     "releaseDate": "2026-11-10",
     "rating": 4.9,
-    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop",
+    "imageUrl": "/images/products/cu-rescene-lunchbox.jpg",
     "affiliateUrl": "https://link.coupang.com/example-cu-rescene",
     "affiliatePlatform": "ConvenienceStore",
     "i18n": {
@@ -71,7 +71,7 @@ real_products = [
     "priceKrw": 3000,
     "releaseDate": "2026-11-02",
     "rating": 4.8,
-    "imageUrl": "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=800&auto=format&fit=crop",
+    "imageUrl": "/images/products/gs25-lalasweet-apple.png",
     "affiliateUrl": "https://link.coupang.com/example-gs25-lalasweet",
     "affiliatePlatform": "ConvenienceStore",
     "i18n": {
@@ -129,7 +129,7 @@ real_products = [
     "priceKrw": 44500,
     "releaseDate": "2026-11-01",
     "rating": 4.9,
-    "imageUrl": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&auto=format&fit=crop",
+    "imageUrl": "/images/products/oliveyoung-aestura-cream.jpg",
     "affiliateUrl": "https://link.coupang.com/example-aestura",
     "affiliatePlatform": "OliveYoung",
     "i18n": {
@@ -187,7 +187,7 @@ real_products = [
     "priceKrw": 169900,
     "releaseDate": "2026-11-04",
     "rating": 4.9,
-    "imageUrl": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&auto=format&fit=crop",
+    "imageUrl": "/images/products/musinsa-cashmere-coat.jpg",
     "affiliateUrl": "https://musinsa.com/example-cashmere-coat-2026",
     "affiliatePlatform": "Musinsa",
     "i18n": {

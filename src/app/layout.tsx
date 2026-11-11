@@ -31,6 +31,12 @@ export default function RootLayout({
       <head>
         <link rel="describedby" href="/llms.txt" />
         <link rel="service-desc" href="/api/mcp" />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9313918070358284"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </head>
       <body className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased selection:bg-zinc-200 dark:selection:bg-zinc-800">
         {/* Google Analytics 4 */}

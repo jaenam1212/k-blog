@@ -29,22 +29,25 @@ export async function generateMetadata({
 
   const content = product.i18n[lang as Locale] || product.i18n.en;
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://k-blog-ten.vercel.app';
   const languagesObj: Record<string, string> = {};
   for (const l of LOCALES) {
-    languagesObj[l] = `https://k-trendbox.com/${l}/post/${slug}`;
+    languagesObj[l] = `${siteUrl}/${l}/post/${slug}`;
   }
+
+  const allImages = product.images && product.images.length > 0 ? product.images : [product.imageUrl];
 
   return {
     title: `${content.title} | K-Trend Archive`,
     description: content.summary,
     alternates: {
-      canonical: `https://k-trendbox.com/${lang}/post/${slug}`,
+      canonical: `${siteUrl}/${lang}/post/${slug}`,
       languages: languagesObj,
     },
     openGraph: {
       title: content.title,
       description: content.summary,
-      images: [product.imageUrl],
+      images: allImages,
     },
   };
 }
@@ -71,11 +74,13 @@ export default async function ProductDetailPage({
     'k-fashion': dict.kFashion,
   };
 
+  const allImages = product.images && product.images.length > 0 ? product.images : [product.imageUrl];
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: content.title,
-    image: [product.imageUrl],
+    image: allImages,
     description: content.description,
     brand: {
       '@type': 'Brand',
@@ -147,14 +152,44 @@ export default async function ProductDetailPage({
         </p>
       </header>
 
-      {/* Featured Image */}
-      <div className="rounded-xl overflow-hidden aspect-[16/10] bg-zinc-100 dark:bg-zinc-800 my-8 border border-zinc-100 dark:border-zinc-800/80">
+      {/* Featured Main Image (Full silhouette framing, no head/hem cropping) */}
+      <div className="rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 my-8 border border-zinc-200/80 dark:border-zinc-800/80 flex items-center justify-center p-2 sm:p-4">
         <img
           src={product.imageUrl}
           alt={content.title}
-          className="w-full h-full object-cover"
+          className="w-full h-auto max-h-[720px] object-contain rounded-lg mx-auto"
         />
       </div>
+
+      {/* Lookbook / Multi-photo Gallery */}
+      {product.images && product.images.length > 1 && (
+        <section className="my-10">
+          <div className="flex items-center justify-between mb-4 border-b border-zinc-200/80 dark:border-zinc-800 pb-2">
+            <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+              Lookbook & Detailed Cuts ({product.images.length})
+            </h2>
+            <span className="text-[11px] font-mono text-zinc-400">High-Res Gallery</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {product.images.map((imgUrl, idx) => (
+              <div
+                key={idx}
+                className="group relative rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 aspect-[3/4] flex items-center justify-center"
+              >
+                <img
+                  src={imgUrl}
+                  alt={`${content.title} - ${idx + 1}`}
+                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                  loading="lazy"
+                />
+                <span className="absolute bottom-2.5 left-2.5 bg-black/60 backdrop-blur-sm text-white text-[10px] font-mono px-2 py-0.5 rounded">
+                  #{idx + 1}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Top AdSense Banner */}
       <AdSenseSlot slotId="post-top-content" />

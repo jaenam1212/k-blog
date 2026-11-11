@@ -17,7 +17,7 @@ export function ProductCard({ product, lang }: { product: Product; lang: Locale 
       <div>
         <Link
           href={`/${lang}/post/${product.slug}`}
-          className="block aspect-[16/10] overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-800 mb-4 border border-zinc-100 dark:border-zinc-800/60"
+          className="block aspect-[3/4] overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-800 mb-4 border border-zinc-100 dark:border-zinc-800/60 relative"
         >
           <img
             src={product.imageUrl}
@@ -25,6 +25,12 @@ export function ProductCard({ product, lang }: { product: Product; lang: Locale 
             className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
             loading="lazy"
           />
+          {product.images && product.images.length > 1 && (
+            <span className="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm text-white text-[10px] font-mono px-1.5 py-0.5 rounded flex items-center gap-1">
+              <span>📷</span>
+              <span>{product.images.length}</span>
+            </span>
+          )}
         </Link>
 
         <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] font-mono text-zinc-400 dark:text-zinc-500 mb-2">

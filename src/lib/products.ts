@@ -17,8 +17,9 @@ export interface Product {
   releaseDate: string;
   rating: number; // out of 5
   imageUrl: string;
+  images?: string[]; // Multi-photo gallery & lookbook
   affiliateUrl: string;
-  affiliatePlatform: 'Coupang' | 'Musinsa' | 'OliveYoung' | 'ConvenienceStore';
+  affiliatePlatform: 'Coupang' | 'Musinsa' | 'OliveYoung' | 'ConvenienceStore' | 'Zara' | 'Uniqlo';
   i18n: Record<Locale, LocalizedContent>;
 }
 

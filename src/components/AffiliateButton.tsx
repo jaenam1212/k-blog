@@ -2,7 +2,7 @@ import { Locale, DICTIONARY } from '@/lib/i18n';
 
 interface AffiliateButtonProps {
   url: string;
-  platform: 'Coupang' | 'Musinsa' | 'OliveYoung' | 'ConvenienceStore';
+  platform: 'Coupang' | 'Musinsa' | 'OliveYoung' | 'ConvenienceStore' | 'Zara' | 'Uniqlo' | string;
   priceKrw: number;
   lang: Locale;
 }
@@ -19,6 +19,8 @@ export function AffiliateButton({
     Coupang: '쿠팡',
     Musinsa: '무신사 스토어',
     OliveYoung: '올리브영',
+    Zara: 'ZARA 공식 스토어',
+    Uniqlo: '유니클로 공식 스토어',
     ConvenienceStore: '공식 판매처',
   };
 

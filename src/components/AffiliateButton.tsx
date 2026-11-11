@@ -30,7 +30,8 @@ export function AffiliateButton({
 
   const storeName = platformNames[platform] || '공식 판매처';
 
-  const coupangSearchUrl = `https://www.coupang.com/np/search?component=&q=${encodeURIComponent(productTitle)}`;
+  const COUPANG_AF_ID = process.env.NEXT_PUBLIC_COUPANG_AF_ID || 'AF9412775';
+  const coupangSearchUrl = `https://www.coupang.com/np/search?component=&q=${encodeURIComponent(productTitle)}&lptag=${COUPANG_AF_ID}`;
   const musinsaSearchUrl = `https://www.musinsa.com/search/goods?keyword=${encodeURIComponent(productTitle)}`;
 
   return (

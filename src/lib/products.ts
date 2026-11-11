@@ -8,6 +8,15 @@ export interface LocalizedContent {
   tips: string;
 }
 
+export interface ExampleItem {
+  name: string;
+  brand: string;
+  priceKrw: number;
+  imageUrl: string;
+  url?: string;
+  category?: string;
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -18,6 +27,7 @@ export interface Product {
   rating: number; // out of 5
   imageUrl: string;
   images?: string[]; // Multi-photo gallery & lookbook
+  exampleItems?: ExampleItem[]; // Concrete recommended example items with real product photos
   affiliateUrl: string;
   affiliatePlatform: 'Coupang' | 'Musinsa' | 'OliveYoung' | 'ConvenienceStore' | 'Zara' | 'Uniqlo';
   i18n: Record<Locale, LocalizedContent>;

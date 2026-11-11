@@ -222,12 +222,14 @@ export default async function ProductDetailPage({
         </div>
       </div>
 
-      {/* Affiliate Purchase CTA */}
+      {/* Affiliate Purchase CTA (Coupang, Musinsa, Brand Store) */}
       <AffiliateButton
         url={product.affiliateUrl}
         platform={product.affiliatePlatform}
         priceKrw={product.priceKrw}
         lang={currentLang}
+        productTitle={content.title}
+        category={product.category}
       />
 
       {/* Bottom AdSense Banner */}

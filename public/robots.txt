@@ -17,4 +17,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://k-trendbox.com/sitemap.xml
+Sitemap: https://k-blog-ten.vercel.app/sitemap.xml

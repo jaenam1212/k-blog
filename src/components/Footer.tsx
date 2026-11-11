@@ -21,15 +21,15 @@ export function Footer({ lang }: { lang: Locale }) {
 
         <div className="flex flex-col sm:items-end gap-2">
           <div className="flex flex-wrap items-center gap-3 text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
-            <Link href={`/${lang}/about`} className="hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">
+            <Link href="/about" className="hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">
               About
             </Link>
             <span>·</span>
-            <Link href={`/${lang}/privacy`} className="hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">
+            <Link href="/privacy" className="hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">
               Privacy Policy
             </Link>
             <span>·</span>
-            <Link href={`/${lang}/terms`} className="hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">
+            <Link href="/terms" className="hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">
               Terms
             </Link>
           </div>

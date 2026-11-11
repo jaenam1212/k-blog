@@ -15,7 +15,7 @@ from datetime import datetime
 
 SUPABASE_URL = "https://jmuqmvxubuwhoocuknnt.supabase.co"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImptdXFtdnh1YnV3aG9vY3Vrbm50Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5NDMwODA3NywiZXhwIjoyMTA5ODg0MDc3fQ.ELyAmyRJrWdQoIHRu4thMGvjAnjJfVZ4S8Cfpb9MiDY"
-REVALIDATE_URL = "https://k-blog-ten.vercel.app/api/revalidate?secret=kblog2026"
+REVALIDATE_URL = "https://www.k-trand.store/api/revalidate?secret=kblog2026"
 
 PUBLIC_IMG_DIR = os.path.join(os.path.dirname(__file__), "public", "images", "products")
 os.makedirs(PUBLIC_IMG_DIR, exist_ok=True)

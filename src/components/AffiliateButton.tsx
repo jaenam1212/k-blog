@@ -32,7 +32,15 @@ export function AffiliateButton({
 
   const COUPANG_AF_ID = process.env.NEXT_PUBLIC_COUPANG_AF_ID || 'AF9412775';
   const coupangSearchUrl = `https://www.coupang.com/np/search?component=&q=${encodeURIComponent(productTitle)}&lptag=${COUPANG_AF_ID}`;
-  const musinsaSearchUrl = `https://www.musinsa.com/search/goods?keyword=${encodeURIComponent(productTitle)}`;
+  const musinsaSearchUrl = `https://www.musinsa.com/search/goods?keyword=${encodeURIComponent(productTitle)}&gf=A`;
+
+  // Fallback safe target URL to prevent 404s before curator shop approval
+  const targetUrl =
+    url && !url.includes('/curator/s/')
+      ? url
+      : platform === 'Musinsa'
+      ? musinsaSearchUrl
+      : url || coupangSearchUrl;
 
   return (
     <div className="my-8 p-6 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50/70 dark:bg-zinc-900/40">
@@ -48,7 +56,7 @@ export function AffiliateButton({
 
         <div className="flex flex-wrap items-center gap-2">
           <a
-            href={url}
+            href={targetUrl}
             target="_blank"
             rel="noopener noreferrer sponsored"
             className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-white text-xs font-medium transition-colors"

@@ -212,40 +212,47 @@ export default async function ProductDetailPage({
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-              {product.exampleItems.map((item, idx) => (
-                <a
-                  key={idx}
-                  href={item.url || product.affiliateUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex flex-col rounded-xl overflow-hidden bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200/80 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all p-2.5 sm:p-3"
-                >
-                  <div className="aspect-[3/4] rounded-lg overflow-hidden bg-zinc-100 dark:bg-zinc-800 mb-2.5 relative flex items-center justify-center">
-                    <img
-                      src={item.imageUrl}
-                      alt={item.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
-                    <span className="absolute top-2 left-2 bg-black/75 backdrop-blur-sm text-white text-[9px] font-mono px-1.5 py-0.5 rounded">
-                      {item.brand}
-                    </span>
-                  </div>
-                  <div className="flex-1 flex flex-col justify-between">
-                    <h3 className="text-xs font-medium text-zinc-800 dark:text-zinc-200 line-clamp-2 leading-snug group-hover:text-zinc-900 dark:group-hover:text-white">
-                      {item.name}
-                    </h3>
-                    <div className="mt-2.5 pt-2 border-t border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-between">
-                      <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100 font-mono">
-                        ₩{item.priceKrw.toLocaleString('ko-KR')}
-                      </span>
-                      <span className="text-[10px] font-mono text-zinc-400 group-hover:text-zinc-800 dark:group-hover:text-zinc-200">
-                        보기 ↗
+              {product.exampleItems.map((item, idx) => {
+                const itemTargetUrl =
+                  item.url && !item.url.includes('/curator/s/') && !item.url.includes('k-trand.store')
+                    ? item.url
+                    : `https://www.musinsa.com/search/goods?keyword=${encodeURIComponent(item.name)}&gf=A`;
+
+                return (
+                  <a
+                    key={idx}
+                    href={itemTargetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col rounded-xl overflow-hidden bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200/80 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all p-2.5 sm:p-3"
+                  >
+                    <div className="aspect-[3/4] rounded-lg overflow-hidden bg-zinc-100 dark:bg-zinc-800 mb-2.5 relative flex items-center justify-center">
+                      <img
+                        src={item.imageUrl}
+                        alt={item.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                      <span className="absolute top-2 left-2 bg-black/75 backdrop-blur-sm text-white text-[9px] font-mono px-1.5 py-0.5 rounded">
+                        {item.brand}
                       </span>
                     </div>
-                  </div>
-                </a>
-              ))}
+                    <div className="flex-1 flex flex-col justify-between">
+                      <h3 className="text-xs font-medium text-zinc-800 dark:text-zinc-200 line-clamp-2 leading-snug group-hover:text-zinc-900 dark:group-hover:text-white">
+                        {item.name}
+                      </h3>
+                      <div className="mt-2.5 pt-2 border-t border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-between">
+                        <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100 font-mono">
+                          ₩{item.priceKrw.toLocaleString('ko-KR')}
+                        </span>
+                        <span className="text-[10px] font-mono text-zinc-400 group-hover:text-zinc-800 dark:group-hover:text-zinc-200">
+                          보기 ↗
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                );
+              })}
             </div>
           </section>
         )}

@@ -19,28 +19,28 @@ export function AffiliateButton({
 }: AffiliateButtonProps) {
   const dict = DICTIONARY[lang] || DICTIONARY.en;
 
+  const COUPANG_AF_ID = process.env.NEXT_PUBLIC_COUPANG_AF_ID || 'AF9412775';
+  const coupangSearchUrl = `https://www.coupang.com/np/search?component=&q=${encodeURIComponent(productTitle)}&lptag=${COUPANG_AF_ID}`;
+
+  // Official non-Musinsa brand stores can keep their official URL as secondary
+  const isMusinsa = platform === 'Musinsa' || (url && url.includes('musinsa.com'));
+  const isCoupang = platform === 'Coupang' || isMusinsa || !url;
+
   const platformNames: Record<string, string> = {
-    Coupang: '쿠팡 로켓배송',
-    Musinsa: '무신사 스토어',
+    Coupang: '쿠팡 로켓배송 / 최저가',
     OliveYoung: '올리브영 공식몰',
     Zara: 'ZARA 공식 스토어',
     Uniqlo: '유니클로 공식 스토어',
     ConvenienceStore: '공식 판매처',
   };
 
-  const storeName = platformNames[platform] || '공식 판매처';
+  const storeName = isMusinsa
+    ? '쿠팡 로켓배송 / 최저가'
+    : platformNames[platform] || (isCoupang ? '쿠팡 로켓배송 / 최저가' : '공식 판매처');
 
-  const COUPANG_AF_ID = process.env.NEXT_PUBLIC_COUPANG_AF_ID || 'AF9412775';
-  const coupangSearchUrl = `https://www.coupang.com/np/search?component=&q=${encodeURIComponent(productTitle)}&lptag=${COUPANG_AF_ID}`;
-  const musinsaSearchUrl = `https://www.musinsa.com/search/goods?keyword=${encodeURIComponent(productTitle)}&gf=A`;
-
-  // Fallback safe target URL to prevent 404s before curator shop approval
-  const targetUrl =
-    url && !url.includes('/curator/s/')
-      ? url
-      : platform === 'Musinsa'
-      ? musinsaSearchUrl
-      : url || coupangSearchUrl;
+  // Primary URL is always Coupang when platform is Coupang or Musinsa
+  const primaryUrl = isCoupang ? (url && url.includes('coupang.com') ? url : coupangSearchUrl) : coupangSearchUrl;
+  const secondaryUrl = !isCoupang && url && !url.includes('musinsa.com') ? url : null;
 
   return (
     <div className="my-8 p-6 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50/70 dark:bg-zinc-900/40">
@@ -55,36 +55,26 @@ export function AffiliateButton({
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
+          {/* Main Coupang Affiliate CTA */}
           <a
-            href={targetUrl}
+            href={primaryUrl}
             target="_blank"
             rel="noopener noreferrer sponsored"
             className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-white text-xs font-medium transition-colors"
           >
-            <span>{dict.shoppingLink}</span>
+            <span>쿠팡 최저가 검색 및 구매</span>
             <span>→</span>
           </a>
 
-          {platform !== 'Coupang' && (category === 'convenience-food' || category === 'k-beauty') && (
+          {/* Optional Official Mall Link if separate from Coupang */}
+          {secondaryUrl && (
             <a
-              href={coupangSearchUrl}
+              href={secondaryUrl}
               target="_blank"
               rel="noopener noreferrer sponsored"
               className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-medium transition-colors"
             >
-              <span>쿠팡 최저가 검색</span>
-              <span>↗</span>
-            </a>
-          )}
-
-          {platform !== 'Musinsa' && category === 'k-fashion' && (
-            <a
-              href={musinsaSearchUrl}
-              target="_blank"
-              rel="noopener noreferrer sponsored"
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-medium transition-colors"
-            >
-              <span>무신사 연관 상품</span>
+              <span>{platformNames[platform] || '공식몰 바로가기'}</span>
               <span>↗</span>
             </a>
           )}
@@ -92,7 +82,7 @@ export function AffiliateButton({
       </div>
 
       <div className="mt-3 text-[11px] text-zinc-400 dark:text-zinc-500 font-mono leading-relaxed">
-        * 본 콘텐츠는 제휴 마케팅 활동의 일환으로, 구매 발생 시 일정액의 수수료를 제공받을 수 있습니다.
+        * 본 콘텐츠는 쿠팡 파트너스 제휴 마케팅 활동의 일환으로, 구매 발생 시 일정액의 수수료를 제공받을 수 있습니다.
       </div>
     </div>
   );

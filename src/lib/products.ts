@@ -154,13 +154,13 @@ export const FALLBACK_PRODUCTS: Product[] = [
     id: 'musinsa-cashmere-coat-202611',
     slug: 'musinsa-standard-cashmere-balmacaan-robe-coat',
     category: 'k-fashion',
-    store: 'Musinsa Standard',
+    store: '쿠팡 로켓배송 / 최저가',
     priceKrw: 189000,
     releaseDate: '2026-11-09',
     rating: 4.9,
     imageUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=800&auto=format&fit=crop',
-    affiliateUrl: 'https://musinsa.com/example-cashmere-coat',
-    affiliatePlatform: 'Musinsa',
+    affiliateUrl: 'https://www.coupang.com/np/search?component=&q=무신사스탠다드+캐시미어+발마칸+코트&lptag=AF9412775',
+    affiliatePlatform: 'Coupang',
     i18n: {
       ko: {
         title: '무신사 스탠다드 2026 겨울 신상 "캐시미어 블렌드 발마칸 로브 코트" 핏·소재 분석',

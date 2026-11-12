@@ -208,15 +208,13 @@ export default async function ProductDetailPage({
                 <span>💡 실전 추천 코디 아이템</span>
                 <span className="text-zinc-400 font-normal">({product.exampleItems.length})</span>
               </h2>
-              <span className="text-[11px] font-mono text-zinc-400">무신사 & SPA 실시간</span>
+              <span className="text-[11px] font-mono text-zinc-400">쿠팡 로켓 & 최저가 검색</span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
               {product.exampleItems.map((item, idx) => {
-                const itemTargetUrl =
-                  item.url && !item.url.includes('/curator/s/') && !item.url.includes('k-trand.store')
-                    ? item.url
-                    : `https://www.musinsa.com/search/goods?keyword=${encodeURIComponent(item.name)}&gf=A`;
+                const coupangAfId = process.env.NEXT_PUBLIC_COUPANG_AF_ID || 'AF9412775';
+                const itemTargetUrl = `https://www.coupang.com/np/search?component=&q=${encodeURIComponent(item.name)}&lptag=${coupangAfId}`;
 
                 return (
                   <a
@@ -246,7 +244,7 @@ export default async function ProductDetailPage({
                           ₩{item.priceKrw.toLocaleString('ko-KR')}
                         </span>
                         <span className="text-[10px] font-mono text-zinc-400 group-hover:text-zinc-800 dark:group-hover:text-zinc-200">
-                          보기 ↗
+                          쿠팡 최저가 ↗
                         </span>
                       </div>
                     </div>
@@ -279,7 +277,10 @@ export default async function ProductDetailPage({
         </div>
       </div>
 
-      {/* Affiliate Purchase CTA (Coupang, Musinsa, Brand Store) */}
+      {/* Middle In-Article AdSense Banner */}
+      <AdSenseSlot slotId="post-middle-content" />
+
+      {/* Affiliate Purchase CTA (Coupang, Brand Store) */}
       <AffiliateButton
         url={product.affiliateUrl}
         platform={product.affiliatePlatform}

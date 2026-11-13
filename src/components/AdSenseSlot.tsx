@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect } from 'react';
+
 interface AdSenseSlotProps {
   slotId?: string;
   format?: 'auto' | 'fluid' | 'rectangle';
@@ -12,6 +14,18 @@ export function AdSenseSlot({
   className = '',
 }: AdSenseSlotProps) {
   const isDev = process.env.NODE_ENV !== 'production';
+
+  useEffect(() => {
+    if (!isDev) {
+      try {
+        if (typeof window !== 'undefined') {
+          ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+        }
+      } catch (err) {
+        console.error('AdSense push error:', err);
+      }
+    }
+  }, [isDev]);
 
   return (
     <aside

@@ -20,7 +20,7 @@ export interface ExampleItem {
 export interface Product {
   id: string;
   slug: string;
-  category: 'convenience-food' | 'k-beauty' | 'k-fashion';
+  category: 'convenience-food' | 'k-beauty' | 'k-fashion' | 'tech';
   store: string;
   priceKrw: number;
   releaseDate: string;

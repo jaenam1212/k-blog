@@ -9,11 +9,23 @@
 """
 
 import json
+import os
 import urllib.request
 from urllib.parse import quote
 
+def _env_local(name):
+    """Read a key from .env.local so no secret is hardcoded in the repo."""
+    try:
+        for line in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env.local"), encoding="utf-8"):
+            if line.startswith(name + "="):
+                return line.split("=", 1)[1].strip()
+    except OSError:
+        pass
+    return ""
+
+
 SUPABASE_URL = "https://jmuqmvxubuwhoocuknnt.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJvbGUiOiJzZXJ2aWNlX3JvbGUiLCJpYXQiOjE3OTQzMDgwNzcsImV4cCI6MjEwOTg4NDA3N30.ELyAmyRJrWdQoIHRu4thMGvjAnjJfVZ4S8Cfpb9MiDY"
+SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or _env_local("SUPABASE_SERVICE_ROLE_KEY")
 REVALIDATE_URL = "https://www.k-trand.store/api/revalidate?secret=kblog2026"
 SLUG = "kospi-4700-line-ai-bubble-market-report-2026-11-23"
 

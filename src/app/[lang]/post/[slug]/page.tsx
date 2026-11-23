@@ -72,6 +72,7 @@ export default async function ProductDetailPage({
     'convenience-food': dict.convenienceFood,
     'k-beauty': dict.kBeauty,
     'k-fashion': dict.kFashion,
+    tech: dict.tech,
   };
 
   const allImages = product.images && product.images.length > 0 ? product.images : [product.imageUrl];

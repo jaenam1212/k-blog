@@ -20,7 +20,6 @@ UPDATES = {
     "heated-vs-ultrasonic-humidifier-power-cost-2026": {
         "imageUrl": "/images/products/real-humidifier-cuckoo-steam-room.jpg",
         "images": [
-            "/images/products/real-humidifier-cuckoo-steam-room.jpg",
             "/images/products/real-humidifier-lg-hydrotower-room.jpg",
             "/images/products/real-humidifier-zojirushi-nursery.jpg",
             "/images/products/real-humidifier-cuckoo-tank.jpg",
@@ -29,7 +28,6 @@ UPDATES = {
     "heated-humidifier-limescale-cleaning-2026": {
         "imageUrl": "/images/products/real-humidifier-cuckoo-tank-wash.jpg",
         "images": [
-            "/images/products/real-humidifier-cuckoo-tank-wash.jpg",
             "/images/products/real-humidifier-zojirushi-citric-acid.jpg",
             "/images/products/real-humidifier-zojirushi-tank-wipe.jpg",
             "/images/products/real-humidifier-zojirushi-heater.jpg",

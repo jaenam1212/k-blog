@@ -35,6 +35,12 @@ export function Header({ lang }: { lang: Locale }) {
             >
               {dict.kFashion}
             </Link>
+            <Link
+              href={`/${lang}/tech`}
+              className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            >
+              {dict.tech}
+            </Link>
           </nav>
         </div>
 

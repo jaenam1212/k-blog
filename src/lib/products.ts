@@ -30,6 +30,7 @@ export interface Product {
   exampleItems?: ExampleItem[]; // Concrete recommended example items with real product photos
   affiliateUrl: string;
   affiliatePlatform: 'Coupang' | 'Musinsa' | 'OliveYoung' | 'ConvenienceStore' | 'Zara' | 'Uniqlo';
+  postType?: 'report'; // market/issue reports render without price and affiliate CTA
   i18n: Record<Locale, LocalizedContent>;
 }
 

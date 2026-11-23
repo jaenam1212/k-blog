@@ -77,9 +77,23 @@ export default async function ProductDetailPage({
 
   const allImages = product.images && product.images.length > 0 ? product.images : [product.imageUrl];
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
+  const isReport = product.postType === 'report';
+
+  const jsonLd = isReport
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: content.title,
+        description: content.summary,
+        image: allImages,
+        datePublished: product.releaseDate,
+        dateModified: product.releaseDate,
+        author: { '@type': 'Organization', name: 'K-Trend Archive' },
+        publisher: { '@type': 'Organization', name: 'K-Trend Archive' },
+      }
+    : {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
     name: content.title,
     image: allImages,
     description: content.description,
@@ -112,7 +126,7 @@ export default async function ProductDetailPage({
       ratingValue: product.rating,
       reviewCount: 42,
     },
-  };
+      };
 
   return (
     <article className="max-w-2xl mx-auto py-4">
@@ -138,10 +152,14 @@ export default async function ProductDetailPage({
           <span>{product.store}</span>
           <span>·</span>
           <span>{product.releaseDate}</span>
-          <span>·</span>
-          <span className="font-semibold text-zinc-700 dark:text-zinc-300">
-            ₩{product.priceKrw.toLocaleString('ko-KR')}
-          </span>
+          {!isReport && (
+            <>
+              <span>·</span>
+              <span className="font-semibold text-zinc-700 dark:text-zinc-300">
+                ₩{product.priceKrw.toLocaleString('ko-KR')}
+              </span>
+            </>
+          )}
         </div>
 
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-snug">
@@ -167,7 +185,7 @@ export default async function ProductDetailPage({
         <section className="my-10">
           <div className="flex items-center justify-between mb-4 border-b border-zinc-200/80 dark:border-zinc-800 pb-2">
             <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-              Lookbook & Detailed Cuts ({product.images.length})
+              {isReport ? 'Data & Charts' : 'Lookbook & Detailed Cuts'} ({product.images.length})
             </h2>
             <span className="text-[11px] font-mono text-zinc-400">High-Res Gallery</span>
           </div>
@@ -281,15 +299,17 @@ export default async function ProductDetailPage({
       {/* Middle In-Article AdSense Banner */}
       <AdSenseSlot slotId="post-middle-content" />
 
-      {/* Affiliate Purchase CTA (Coupang, Brand Store) */}
-      <AffiliateButton
-        url={product.affiliateUrl}
-        platform={product.affiliatePlatform}
-        priceKrw={product.priceKrw}
-        lang={currentLang}
-        productTitle={content.title}
-        category={product.category}
-      />
+      {/* Affiliate Purchase CTA (Coupang, Brand Store) — hidden for market reports */}
+      {!isReport && (
+        <AffiliateButton
+          url={product.affiliateUrl}
+          platform={product.affiliatePlatform}
+          priceKrw={product.priceKrw}
+          lang={currentLang}
+          productTitle={content.title}
+          category={product.category}
+        />
+      )}
 
       {/* Bottom AdSense Banner */}
       <AdSenseSlot slotId="post-bottom-content" />

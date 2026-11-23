@@ -55,7 +55,9 @@ export function ProductCard({ product, lang }: { product: Product; lang: Locale 
 
       <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs">
         <span className="font-semibold text-zinc-900 dark:text-zinc-100 font-mono">
-          ₩{product.priceKrw.toLocaleString('ko-KR')}
+          {product.postType === 'report'
+            ? (lang === 'ko' ? '시장 리포트' : lang === 'ja' ? 'マーケットレポート' : lang === 'zh' ? '市场报告' : 'Market report')
+            : `₩${product.priceKrw.toLocaleString('ko-KR')}`}
         </span>
         <Link
           href={`/${lang}/post/${product.slug}`}

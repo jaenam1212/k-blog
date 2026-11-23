@@ -10,6 +10,7 @@ export function ProductCard({ product, lang }: { product: Product; lang: Locale 
     'convenience-food': dict.convenienceFood,
     'k-beauty': dict.kBeauty,
     'k-fashion': dict.kFashion,
+    tech: dict.tech,
   };
 
   return (

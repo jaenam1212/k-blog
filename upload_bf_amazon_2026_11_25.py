@@ -27,9 +27,21 @@ def _env_local(name):
     return ""
 
 
+def _require_env(name):
+    """Environment variable (or .env.local) only: the repository holds no secrets."""
+    value = os.environ.get(name) or _env_local(name)
+    if not value:
+        raise SystemExit(
+            f"{name} is not set. Set it in the environment or in .env.local "
+            f"(see .env.example). Secrets are never stored in the repository."
+        )
+    return value
+
+
 SUPABASE_URL = "https://jmuqmvxubuwhoocuknnt.supabase.co"
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or _env_local("SUPABASE_SERVICE_ROLE_KEY")
-REVALIDATE_URL = "https://www.k-trand.store/api/revalidate?secret=kblog2026"
+REVALIDATE_URL = ("https://www.k-trand.store/api/revalidate?secret="
+                  + _require_env("REVALIDATE_SECRET"))
 SLUG = "amazon-blackfriday-under-200-duty-free-2026"
 
 K = "https://www.coupang.com/np/search?q="

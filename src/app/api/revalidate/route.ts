@@ -1,12 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath, revalidateTag } from 'next/cache';
+import {
+  INVALID_SECRET_MESSAGE,
+  SECRET_NOT_CONFIGURED_MESSAGE,
+  isRevalidateSecretConfigured,
+  isValidRevalidateSecret,
+} from '@/lib/revalidate-auth';
+
+function guard(given: string | null | undefined) {
+  if (!isRevalidateSecretConfigured()) {
+    return NextResponse.json({ error: SECRET_NOT_CONFIGURED_MESSAGE }, { status: 500 });
+  }
+  if (!isValidRevalidateSecret(given)) {
+    return NextResponse.json({ error: INVALID_SECRET_MESSAGE }, { status: 401 });
+  }
+  return null;
+}
 
 export async function GET(req: NextRequest) {
-  const secret = req.nextUrl.searchParams.get('secret');
-  const validSecret = process.env.REVALIDATE_SECRET || 'kblog2026';
-  if (secret !== validSecret) {
-    return NextResponse.json({ error: 'Unauthorized invalid secret' }, { status: 401 });
-  }
+  const denied = guard(req.nextUrl.searchParams.get('secret'));
+  if (denied) return denied;
+
   revalidateTag('posts');
   revalidatePath('/', 'layout');
   return NextResponse.json({
@@ -19,13 +33,8 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json().catch(() => ({}));
-    const secret = body.secret || req.nextUrl.searchParams.get('secret');
-
-    // Secure token comparison
-    const validSecret = process.env.REVALIDATE_SECRET || 'kblog2026';
-    if (secret !== validSecret) {
-      return NextResponse.json({ error: 'Unauthorized invalid secret' }, { status: 401 });
-    }
+    const denied = guard(body.secret || req.nextUrl.searchParams.get('secret'));
+    if (denied) return denied;
 
     const { path, slug } = body;
 

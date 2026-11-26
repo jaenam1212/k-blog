@@ -1,8 +1,34 @@
 import json
 import urllib.request
+import os
+
+def _env_local(name):
+    """Read a value from the .env.local next to this script (never hardcode secrets)."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env.local")
+    try:
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith(name + "="):
+                    return line.split("=", 1)[1].strip().strip('"').strip("'")
+    except OSError:
+        pass
+    return ""
+
+
+def _require_env(name):
+    """Environment variable (or .env.local) only: the repository holds no secrets."""
+    value = os.environ.get(name) or _env_local(name)
+    if not value:
+        raise SystemExit(
+            f"{name} is not set. Set it in the environment or in .env.local "
+            f"(see .env.example). Secrets are never stored in the repository."
+        )
+    return value
+
 
 SUPABASE_URL = "https://jmuqmvxubuwhoocuknnt.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImptdXFtdnh1YnV3aG9vY3Vrbm50Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQzMDgwNzcsImV4cCI6MjEwOTg4NDA3N30.wgl1-ohyWwTlg2rishdaqXA8jBeFgjQ3qyfINY5sc5A"
+SUPABASE_KEY = _require_env("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 
 products = [
   {

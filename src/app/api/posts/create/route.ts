@@ -2,30 +2,56 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { Product } from '@/lib/products';
 import { siteUrl } from '@/lib/site';
+import {
+  INVALID_SECRET_MESSAGE,
+  SECRET_NOT_CONFIGURED_MESSAGE,
+  isRevalidateSecretConfigured,
+  isValidRevalidateSecret,
+} from '@/lib/revalidate-auth';
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://jmuqmvxubuwhoocuknnt.supabase.co';
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImptdXFtdnh1YnV3aG9vY3Vrbm50Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5NDMwODA3NywiZXhwIjoyMTA5ODg0MDc3fQ.ELyAmyRJrWdQoIHRu4thMGvjAnjJfVZ4S8Cfpb9MiDY';
+/**
+ * Supabase admin connection, read from the environment only.
+ * The repository is public, so no key may be baked into the source.
+ */
+function supabaseConfig() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  const missing: string[] = [];
+  if (!url) missing.push('NEXT_PUBLIC_SUPABASE_URL');
+  if (!serviceKey) missing.push('SUPABASE_SERVICE_ROLE_KEY');
+  return { url, serviceKey, missing };
+}
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { secret, post } = body;
 
-    const validSecret = process.env.REVALIDATE_SECRET || 'kblog2026';
-    if (secret !== validSecret) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (!isRevalidateSecretConfigured()) {
+      return NextResponse.json({ error: SECRET_NOT_CONFIGURED_MESSAGE }, { status: 500 });
+    }
+    if (!isValidRevalidateSecret(secret)) {
+      return NextResponse.json({ error: INVALID_SECRET_MESSAGE }, { status: 401 });
     }
 
     if (!post || !post.slug || !post.i18n) {
       return NextResponse.json({ error: 'Invalid post payload' }, { status: 400 });
     }
 
+    const { url: supabaseUrl, serviceKey, missing } = supabaseConfig();
+    if (missing.length > 0) {
+      return NextResponse.json(
+        { error: `Server is missing required environment variables: ${missing.join(', ')}` },
+        { status: 500 },
+      );
+    }
+
     // Insert into Supabase posts table
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/posts`, {
+    const res = await fetch(`${supabaseUrl}/rest/v1/posts`, {
       method: 'POST',
       headers: {
-        apikey: SUPABASE_SERVICE_KEY,
-        Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
+        apikey: serviceKey as string,
+        Authorization: `Bearer ${serviceKey}`,
         'Content-Type': 'application/json',
         Prefer: 'return=representation',
       },

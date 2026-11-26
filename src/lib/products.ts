@@ -211,17 +211,33 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
 ];
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://jmuqmvxubuwhoocuknnt.supabase.co';
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImptdXFtdnh1YnV3aG9vY3Vrbm50Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQzMDgwNzcsImV4cCI6MjEwOTg4NDA3N30.wgl1-ohyWwTlg2rishdaqXA8jBeFgjQ3qyfINY5sc5A';
+/**
+ * Supabase read connection, read from the environment only (see .env.example).
+ * This repository is public, so no credential may be baked into the source: when
+ * the variables are missing the site serves the static fallback list instead.
+ */
+function supabaseReadConfig(): { url: string; key: string } | null {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
+  if (!url || !key) return null;
+  return { url, key };
+}
 
 export const PRODUCTS = FALLBACK_PRODUCTS;
 
 export async function fetchProductsFromDb(): Promise<Product[]> {
+  const config = supabaseReadConfig();
+  if (!config) {
+    console.error(
+      'Supabase is not configured (NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY); serving the static product list.',
+    );
+    return FALLBACK_PRODUCTS;
+  }
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/posts?select=slug,data&order=id.desc`, {
+    const res = await fetch(`${config.url}/rest/v1/posts?select=slug,data&order=id.desc`, {
       headers: {
-        apikey: SUPABASE_KEY,
-        Authorization: `Bearer ${SUPABASE_KEY}`,
+        apikey: config.key,
+        Authorization: `Bearer ${config.key}`,
       },
       next: { revalidate: 60, tags: ['posts'] },
     });

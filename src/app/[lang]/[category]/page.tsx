@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { getProductsByCategoryAsync } from '@/lib/products';
-import { Locale, DICTIONARY } from '@/lib/i18n';
+import { Locale, DICTIONARY, LOCALES } from '@/lib/i18n';
+import { siteUrl } from '@/lib/site';
 import { ProductCard } from '@/components/ProductCard';
 import { Pagination } from '@/components/Pagination';
 import { AdSenseSlot } from '@/components/AdSenseSlot';
@@ -11,6 +13,51 @@ const VALID_CATEGORIES = ['convenience-food', 'k-beauty', 'k-fashion', 'tech'];
 export const revalidate = 60;
 
 const PAGE_SIZE = 9;
+
+const CATEGORY_KEYS: Record<string, 'convenienceFood' | 'kBeauty' | 'kFashion' | 'tech'> = {
+  'convenience-food': 'convenienceFood',
+  'k-beauty': 'kBeauty',
+  'k-fashion': 'kFashion',
+  tech: 'tech',
+};
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ lang: string; category: string }>;
+  searchParams: Promise<{ page?: string }>;
+}): Promise<Metadata> {
+  const { lang, category } = await params;
+  const { page } = (await searchParams) || {};
+  if (!VALID_CATEGORIES.includes(category)) return {};
+
+  const dict = DICTIONARY[lang as Locale] || DICTIONARY.en;
+  const label = dict[CATEGORY_KEYS[category]] || category;
+  const pageNum = Math.max(1, parseInt(page || '1', 10) || 1);
+  const suffix = pageNum > 1 ? `?page=${pageNum}` : '';
+
+  const languages: Record<string, string> = {};
+  for (const l of LOCALES) {
+    languages[l] = siteUrl(`/${l}/${category}${suffix}`);
+  }
+  languages['x-default'] = siteUrl(`/ko/${category}${suffix}`);
+
+  const canonical = siteUrl(`/${lang}/${category}${suffix}`);
+
+  return {
+    title: `${label} | ${dict.siteName}`,
+    description: dict.siteTagline,
+    alternates: { canonical, languages },
+    openGraph: {
+      type: 'website',
+      url: canonical,
+      siteName: dict.siteName,
+      title: `${label} | ${dict.siteName}`,
+      description: dict.siteTagline,
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const params: { lang: string; category: string }[] = [];

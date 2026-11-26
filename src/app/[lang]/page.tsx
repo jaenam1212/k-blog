@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { fetchProductsFromDb } from '@/lib/products';
-import { Locale, DICTIONARY } from '@/lib/i18n';
+import { Locale, DICTIONARY, LOCALES } from '@/lib/i18n';
+import { siteUrl } from '@/lib/site';
 import { ProductCard } from '@/components/ProductCard';
 import { Pagination } from '@/components/Pagination';
 import { AdSenseSlot } from '@/components/AdSenseSlot';
@@ -8,6 +10,41 @@ import { AdSenseSlot } from '@/components/AdSenseSlot';
 export const revalidate = 60;
 
 const PAGE_SIZE = 9;
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ lang: string }>;
+  searchParams: Promise<{ page?: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const { page } = (await searchParams) || {};
+  const dict = DICTIONARY[lang as Locale] || DICTIONARY.en;
+  const pageNum = Math.max(1, parseInt(page || '1', 10) || 1);
+  const suffix = pageNum > 1 ? `?page=${pageNum}` : '';
+
+  const languages: Record<string, string> = {};
+  for (const l of LOCALES) {
+    languages[l] = siteUrl(`/${l}${suffix}`);
+  }
+  languages['x-default'] = siteUrl(`/ko${suffix}`);
+
+  const canonical = siteUrl(`/${lang}${suffix}`);
+
+  return {
+    title: `${dict.siteName} | ${dict.siteTagline}`,
+    description: dict.siteTagline,
+    alternates: { canonical, languages },
+    openGraph: {
+      type: 'website',
+      url: canonical,
+      siteName: dict.siteName,
+      title: dict.siteName,
+      description: dict.siteTagline,
+    },
+  };
+}
 
 export default async function HomePage({
   params,

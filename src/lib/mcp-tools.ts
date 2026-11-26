@@ -1,5 +1,6 @@
 import { fetchProductsFromDb, getProductBySlugAsync, searchProductsAsync, Product } from './products';
 import { Locale, LOCALES } from './i18n';
+import { siteUrl } from './site';
 
 export const SERVER_INFO = {
   name: 'k-trend-box-mcp-server',
@@ -98,7 +99,7 @@ export async function executeMcpTool(name: string, args: Record<string, any>) {
         rating: p.rating,
         title: loc.title,
         summary: loc.summary,
-        url: `https://k-blog-ten.vercel.app/${lang}/post/${p.slug}`,
+        url: siteUrl(`/${lang}/post/${p.slug}`),
       };
     });
 
@@ -136,7 +137,7 @@ export async function executeMcpTool(name: string, args: Record<string, any>) {
       tasteReview: loc.tasteReview,
       tips: loc.tips,
       affiliateUrl: product.affiliateUrl,
-      canonicalUrl: `https://k-blog-ten.vercel.app/${lang}/post/${product.slug}`,
+      canonicalUrl: siteUrl(`/${lang}/post/${product.slug}`),
     };
 
     return {
@@ -158,7 +159,7 @@ export async function executeMcpTool(name: string, args: Record<string, any>) {
         title: loc.title,
         store: p.store,
         priceKrw: p.priceKrw,
-        url: `https://k-blog-ten.vercel.app/${lang}/post/${p.slug}`,
+        url: siteUrl(`/${lang}/post/${p.slug}`),
       };
     });
 

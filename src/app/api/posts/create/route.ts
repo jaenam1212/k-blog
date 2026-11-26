@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { Product } from '@/lib/products';
+import { siteUrl } from '@/lib/site';
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://jmuqmvxubuwhoocuknnt.supabase.co';
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImptdXFtdnh1YnV3aG9vY3Vrbm50Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5NDMwODA3NywiZXhwIjoyMTA5ODg0MDc3fQ.ELyAmyRJrWdQoIHRu4thMGvjAnjJfVZ4S8Cfpb9MiDY';
@@ -50,7 +51,7 @@ export async function POST(req: NextRequest) {
       success: true,
       inserted: insertedRows[0],
       message: 'Post published and cache revalidated instantly without redeployment!',
-      url: `https://k-blog-ten.vercel.app/ko/post/${post.slug}`,
+      url: siteUrl(`/ko/post/${post.slug}`),
     });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });

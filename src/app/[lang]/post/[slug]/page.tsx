@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getProductBySlugAsync, fetchProductsFromDb } from '@/lib/products';
 import { Locale, DICTIONARY, LOCALES } from '@/lib/i18n';
+import { siteUrl } from '@/lib/site';
 import { AdSenseSlot } from '@/components/AdSenseSlot';
 import { AffiliateButton } from '@/components/AffiliateButton';
 
@@ -29,22 +30,27 @@ export async function generateMetadata({
 
   const content = product.i18n[lang as Locale] || product.i18n.en;
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://k-blog-ten.vercel.app';
   const languagesObj: Record<string, string> = {};
   for (const l of LOCALES) {
-    languagesObj[l] = `${siteUrl}/${l}/post/${slug}`;
+    languagesObj[l] = siteUrl(`/${l}/post/${slug}`);
   }
+  // Unmatched locales fall back to the Korean edition (root redirects to /ko).
+  languagesObj['x-default'] = siteUrl(`/ko/post/${slug}`);
 
   const allImages = product.images && product.images.length > 0 ? product.images : [product.imageUrl];
+  const canonical = siteUrl(`/${lang}/post/${slug}`);
 
   return {
     title: `${content.title} | K-Trend Archive`,
     description: content.summary,
     alternates: {
-      canonical: `${siteUrl}/${lang}/post/${slug}`,
+      canonical,
       languages: languagesObj,
     },
     openGraph: {
+      type: 'article',
+      url: canonical,
+      siteName: 'K-Trend Archive',
       title: content.title,
       description: content.summary,
       images: allImages,

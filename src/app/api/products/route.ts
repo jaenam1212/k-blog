@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { fetchProductsFromDb, getProductsByCategoryAsync, searchProductsAsync } from '@/lib/products';
 import { Locale } from '@/lib/i18n';
+import { siteUrl } from '@/lib/site';
 
 export const revalidate = 60;
 
@@ -32,7 +33,7 @@ export async function GET(req: NextRequest) {
       summary: loc.summary,
       tasteReview: loc.tasteReview,
       tips: loc.tips,
-      url: `https://k-blog-ten.vercel.app/${lang}/post/${p.slug}`,
+      url: siteUrl(`/${lang}/post/${p.slug}`),
       affiliateUrl: p.affiliateUrl,
     };
   });

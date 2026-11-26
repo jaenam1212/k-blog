@@ -46,6 +46,7 @@ export async function generateMetadata({
     alternates: {
       canonical,
       languages: languagesObj,
+      types: { 'text/markdown': '/llms.txt' },
     },
     openGraph: {
       type: 'article',

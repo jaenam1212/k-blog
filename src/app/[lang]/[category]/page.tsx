@@ -48,7 +48,11 @@ export async function generateMetadata({
   return {
     title: `${label} | ${dict.siteName}`,
     description: dict.siteTagline,
-    alternates: { canonical, languages },
+    alternates: {
+      canonical,
+      languages,
+      types: { 'text/markdown': '/llms.txt' },
+    },
     openGraph: {
       type: 'website',
       url: canonical,

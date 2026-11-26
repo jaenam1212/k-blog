@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { Product } from '@/lib/products';
 import { siteUrl } from '@/lib/site';
+import { supabaseAuthHeaders } from '@/lib/supabase-headers';
 import {
   INVALID_SECRET_MESSAGE,
   SECRET_NOT_CONFIGURED_MESSAGE,
@@ -49,12 +50,10 @@ export async function POST(req: NextRequest) {
     // Insert into Supabase posts table
     const res = await fetch(`${supabaseUrl}/rest/v1/posts`, {
       method: 'POST',
-      headers: {
-        apikey: serviceKey as string,
-        Authorization: `Bearer ${serviceKey}`,
+      headers: supabaseAuthHeaders(serviceKey as string, {
         'Content-Type': 'application/json',
         Prefer: 'return=representation',
-      },
+      }),
       body: JSON.stringify({
         slug: post.slug,
         data: post,

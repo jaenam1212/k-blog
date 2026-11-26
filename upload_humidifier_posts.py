@@ -35,6 +35,13 @@ def _require_env(name):
     return value
 
 
+def _bearer_header(key):
+    """Legacy JWT keys ride on Authorization; new sb_ keys must not (Invalid JWT)."""
+    return {"Authorization": f"Bearer {key}"} if key.startswith("eyJ") else {}
+
+
+
+
 SUPABASE_URL = "https://jmuqmvxubuwhoocuknnt.supabase.co"
 SUPABASE_KEY = _require_env("SUPABASE_SERVICE_ROLE_KEY")
 REVALIDATE_URL = ("https://www.k-trand.store/api/revalidate?secret="
@@ -384,7 +391,7 @@ Use food-grade citric acid only, and unplug during cleaning. Never use acid clea
 
 headers = {
     "apikey": SUPABASE_KEY,
-    "Authorization": f"Bearer {SUPABASE_KEY}",
+    **_bearer_header(SUPABASE_KEY),
     "Content-Type": "application/json",
     "Prefer": "return=representation",
 }

@@ -1,4 +1,5 @@
 import { Locale } from './i18n';
+import { supabaseAuthHeaders } from './supabase-headers';
 
 export interface LocalizedContent {
   title: string;
@@ -235,10 +236,7 @@ export async function fetchProductsFromDb(): Promise<Product[]> {
   }
   try {
     const res = await fetch(`${config.url}/rest/v1/posts?select=slug,data&order=id.desc`, {
-      headers: {
-        apikey: config.key,
-        Authorization: `Bearer ${config.key}`,
-      },
+      headers: supabaseAuthHeaders(config.key),
       next: { revalidate: 60, tags: ['posts'] },
     });
     if (!res.ok) throw new Error(`Supabase returned status ${res.status}`);

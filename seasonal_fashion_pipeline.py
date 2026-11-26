@@ -42,6 +42,13 @@ def _require_env(name):
     return value
 
 
+def _bearer_header(key):
+    """Legacy JWT keys ride on Authorization; new sb_ keys must not (Invalid JWT)."""
+    return {"Authorization": f"Bearer {key}"} if key.startswith("eyJ") else {}
+
+
+
+
 SUPABASE_URL = "https://jmuqmvxubuwhoocuknnt.supabase.co"
 SUPABASE_KEY = _require_env("SUPABASE_SERVICE_ROLE_KEY")
 REVALIDATE_URL = ("https://www.k-trand.store/api/revalidate?secret="
@@ -114,7 +121,7 @@ def upsert_to_supabase(product_dict):
     check_url = f"{SUPABASE_URL}/rest/v1/posts?slug=eq.{product_dict['slug']}"
     req = urllib.request.Request(check_url, headers={
         "apikey": SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
+        **_bearer_header(SUPABASE_KEY),
         "Content-Type": "application/json"
     })
     
@@ -130,7 +137,7 @@ def upsert_to_supabase(product_dict):
         update_url = f"{SUPABASE_URL}/rest/v1/posts?id=eq.{post_id}"
         req = urllib.request.Request(update_url, data=json.dumps(record).encode("utf-8"), headers={
             "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
+            **_bearer_header(SUPABASE_KEY),
             "Content-Type": "application/json",
             "Prefer": "return=representation"
         }, method="PATCH")
@@ -140,7 +147,7 @@ def upsert_to_supabase(product_dict):
         insert_url = f"{SUPABASE_URL}/rest/v1/posts"
         req = urllib.request.Request(insert_url, data=json.dumps(record).encode("utf-8"), headers={
             "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
+            **_bearer_header(SUPABASE_KEY),
             "Content-Type": "application/json",
             "Prefer": "return=representation"
         }, method="POST")
@@ -363,7 +370,7 @@ def update_existing_musinsa_with_multi_images():
         check_url = f"{SUPABASE_URL}/rest/v1/posts?slug=eq.{slug}"
         req = urllib.request.Request(check_url, headers={
             "apikey": SUPABASE_KEY,
-            "Authorization": f"Bearer {SUPABASE_KEY}",
+            **_bearer_header(SUPABASE_KEY),
             "Content-Type": "application/json"
         })
         try:
@@ -376,7 +383,7 @@ def update_existing_musinsa_with_multi_images():
                     update_url = f"{SUPABASE_URL}/rest/v1/posts?id=eq.{post['id']}"
                     patch_req = urllib.request.Request(update_url, data=json.dumps({"data": p_data}).encode("utf-8"), headers={
                         "apikey": SUPABASE_KEY,
-                        "Authorization": f"Bearer {SUPABASE_KEY}",
+                        **_bearer_header(SUPABASE_KEY),
                         "Content-Type": "application/json"
                     }, method="PATCH")
                     with urllib.request.urlopen(patch_req, timeout=10) as pr:

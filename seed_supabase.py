@@ -27,6 +27,13 @@ def _require_env(name):
     return value
 
 
+def _bearer_header(key):
+    """Legacy JWT keys ride on Authorization; new sb_ keys must not (Invalid JWT)."""
+    return {"Authorization": f"Bearer {key}"} if key.startswith("eyJ") else {}
+
+
+
+
 SUPABASE_URL = "https://jmuqmvxubuwhoocuknnt.supabase.co"
 SUPABASE_KEY = _require_env("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 
@@ -222,7 +229,7 @@ req = urllib.request.Request(
     data=data_bytes,
     headers={
         "apikey": SUPABASE_KEY,
-        "Authorization": f"Bearer {SUPABASE_KEY}",
+        **_bearer_header(SUPABASE_KEY),
         "Content-Type": "application/json",
         "Prefer": "return=representation"
     },

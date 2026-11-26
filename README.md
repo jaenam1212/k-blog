@@ -36,10 +36,15 @@ A next-generation multilingual (Korean, English, Japanese, Chinese) trend blog b
 # 1. Install dependencies
 npm install
 
-# 2. Run local development server
+# 2. Copy the environment template and fill in real values
+#    (Supabase keys + the write-API secret; never commit a real key,
+#     this repository is public and the API routes do 500 when a value is missing)
+cp .env.example .env.local
+
+# 3. Run local development server
 npm run dev
 
-# 3. Open in browser
+# 4. Open in browser
 open http://localhost:3000
 ```
 

@@ -5,6 +5,7 @@ import { Locale, DICTIONARY, LOCALES } from '@/lib/i18n';
 import { siteUrl } from '@/lib/site';
 import { AdSenseSlot } from '@/components/AdSenseSlot';
 import { AffiliateButton } from '@/components/AffiliateButton';
+import { SignalCTA } from '@/components/SignalCTA';
 
 export const revalidate = 60;
 
@@ -85,8 +86,10 @@ export default async function ProductDetailPage({
   const allImages = product.images && product.images.length > 0 ? product.images : [product.imageUrl];
 
   const isReport = product.postType === 'report';
+  // Guides and reports are editorial: no price header, no affiliate CTA, Article JSON-LD.
+  const isEditorial = isReport || product.postType === 'guide';
 
-  const jsonLd = isReport
+  const jsonLd = isEditorial
     ? {
         '@context': 'https://schema.org',
         '@type': 'Article',
@@ -159,7 +162,7 @@ export default async function ProductDetailPage({
           <span>{product.store}</span>
           <span>·</span>
           <span>{product.releaseDate}</span>
-          {!isReport && (
+          {!isEditorial && (
             <>
               <span>·</span>
               <span className="font-semibold text-zinc-700 dark:text-zinc-300">
@@ -306,8 +309,11 @@ export default async function ProductDetailPage({
       {/* Middle In-Article AdSense Banner */}
       <AdSenseSlot slotId="post-middle-content" />
 
+      {/* K-Trend Radar (K-Signal) funnel */}
+      <SignalCTA lang={currentLang} />
+
       {/* Affiliate Purchase CTA (Coupang, Brand Store) — hidden for market reports */}
-      {!isReport && (
+      {!isEditorial && (
         <AffiliateButton
           url={product.affiliateUrl}
           platform={product.affiliatePlatform}

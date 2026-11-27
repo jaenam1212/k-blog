@@ -41,6 +41,17 @@ export function Header({ lang }: { lang: Locale }) {
             >
               {dict.tech}
             </Link>
+            <a
+              href="https://signal.k-trand.store"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-zinc-900 dark:text-zinc-100 hover:opacity-70 transition-opacity"
+              title="K-Trend Radar (K-Signal)"
+            >
+              <span className="w-1 h-1 rounded-full bg-zinc-900 dark:bg-zinc-100" aria-hidden="true" />
+              <span>{dict.signalNav}</span>
+              <span className="text-zinc-400" aria-hidden="true">↗</span>
+            </a>
           </nav>
         </div>
 

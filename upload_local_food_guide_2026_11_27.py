@@ -97,12 +97,12 @@ CU의 겨울 효자 상품은 생딸기 샌드위치다. 11월 6일 '딸기 초�
 6. 성수·을지로 로컬 맛집 3곳
 (1) 소문난성수감자탕 — 서울 성동구 연무장길 45, 02-465-6580. 성수역 4번 출구에서 229m, 연중무휴 24시간. 감자국식사(1인) 일반 12,000원·우거지 13,000원, 감자탕 소 32,000원·중 37,000원·대 49,000원, 수제비 사리 4,000원. 예약은 받지 않고 번호표도 없다. 대기석에 앉아 있으면 순서대로 안내하며, 일행이 모두 도착해야 들어갈 수 있다. 혼자라면 별도 혼밥석으로 바로 안내받을 수 있다. 주차는 식사 시간에만 가능하고 관리비 2,000원이 붙는다. 외국인이라면 2인 이상이 필요한 감자탕보다 1인용 감자국이 주문하기 쉽고, 남은 국물에 볶음밥 4,000원을 볶아 마무리하는 방식이 이 집의 정석이다.
 
-(2) 원조만선호프 — 서울 중구 을지로13길 19, 02-2274-1040. 을지로3가역 4번 출구에서 도보 2분, 을지로 노가리골목. 매일 낮 12시에 열고, 마감 시각은 자료에 따라 자정과 새벽 3시로 갈린다. 예약과 주차는 받지 않는다. 노가리 2,000원, 황태 2,000원, 마늘치킨 반 마리 1만 원 안팎, 생맥주 500cc가 1·2층 5,000원, 루프탑 5,500원이다. 사람들이 앉는 곳은 계단으로만 올라가는 루프탑이라 오후 6시를 넘기면 계단에 줄이 생긴다. 앱 웨이팅이 없으니 그냥 줄을 서면 된다. 주문은 자리에서 직원에게 하고, 노가리는 손으로 뜯어 고추장·마요 소스에 찍어 먹는다. 계단이 힘들면 1·2층 실내 자리를 물어보면 된다.
+(2) 원조만선호프 — 서울 중구 을지로13길 19, 02-2274-1040. 을지로3가역 4번 출구에서 도보 2분, 을지로 노가리골목. 매일 낮 12시에 열고, 마감 시각은 자료에 따라 자정과 새벽 3시로 갈린다. 예약과 주차는 받지 않는다. 노가리 2,000원, 황태 2,000원, 마늘치킨 반 마리 1만 원 안팎, 생맥주 500cc는 1·2층 5,000원·루프탑 5,500원(2026년 가을 방문기 기준)이다. 사람들이 앉는 곳은 계단으로만 올라가는 루프탑이라 오후 6시를 넘기면 계단에 줄이 생긴다. 앱 웨이팅이 없으니 그냥 줄을 서면 된다. 주문은 자리에서 직원에게 하고, 노가리는 손으로 뜯어 고추장·마요 소스에 찍어 먹는다. 계단이 힘들면 1·2층 실내 자리를 물어보면 된다.
 
 (3) 안동장 — 서울 중구 을지로 124, 02-2266-3814. 을지로3가역 10번 출구에서 1분. 1948년 무렵 문을 열어 3대째 이어온 중식당으로, 서울미래유산(2013-175)에 '서울에서 가장 오래된 중식당'으로 소개된 곳이다. 영업시간은 11:30~21:00 연중무휴(한국관광공사 기준)이며, 지도 서비스에는 20:30 마감으로 표기된 곳도 있다. 주차는 불가. 굴짬뽕 12,000~13,000원, 삼선우동 11,000원, 짜장면 9,000원, 군만두 9,000원. 예약은 6인 이상만 전화로 받고 그 아래는 현장 대기다. 마늘과 굴을 넣은 굴짬뽕이 대표 메뉴라 매운 짬뽕이 부담스러운 사람도 먹기 쉽다.
 
 7. 확인된 것과 확인되지 않은 것
-확인된 것: 편의점 6종의 가격과 행사 기간은 각 사 보도자료(GS리테일 11월 16일·19일, BGF리테일 11월 5일·9일·26일, 코리아세븐 11월 12일·15일·17일)와 매장 표기 사진, 맛집 3곳의 주소·전화·영업시간은 한국관광공사·서울관광과 지도 서비스의 2026년 11월 27일 값이다.
+확인된 것: 행사 기간과 대부분의 가격은 각 사 보도자료(GS리테일 11월 16일·19일, BGF리테일 11월 5일·9일·26일, 코리아세븐 11월 12일·15일·17일)와 보도사진 속 매장 표기에서 확인했다. CU '딸기 초코 휩 카스텔라 샌드'(5,500원)와 치즈 시리즈 일부 가격은 보도자료에 숫자가 없어 유통 매체와 신상품 데이터 사이트의 표기를 대조해 적었다. 맛집 3곳의 주소·전화·영업시간은 한국관광공사·서울관광(VisitSeoul)과 지도 서비스의 2026년 11월 27일 값이다.
 확인되지 않은 것: '후르츠 우유 휩 샌드'의 가격, 12월 '딸기 우유 휩 샌드'의 출시일, 만선호프의 마감 시각, 안동장의 브레이크타임 유무, 만선호프의 카드 결제 여부. 방문 전에 매장이나 지도 앱에서 한 번 더 확인하는 편이 안전하다."""
 
 EN = """This is what Seoul's three big convenience store chains actually put on the shelf this week, checked against their own press releases: six new items with real prices, three combinations that add up to a cheap meal, and three local restaurants in Seongsu and Euljiro with exact addresses, hours and ordering tips for visitors. All prices and hours are as of 27 November 2026.
@@ -137,12 +137,12 @@ Third, use the store microwave and hot water dispenser after paying. Fill cup ra
 6. Three local restaurants in Seongsu and Euljiro
 (1) Somunnan Seongsu Gamjatang — 45 Yeonmujang-gil, Seongdong-gu, Seoul; 02-465-6580. 229m from Seongsu Station exit 4, open 24 hours every day. Single-serving gamja-guk (pork bone soup) is 12,000 won plain or 13,000 won with dried radish greens; a gamjatang pot is 32,000 won small, 37,000 medium and 49,000 large, with hand-torn sujebi noodles at 4,000 won. No reservations and no ticket machine: sit in the waiting area and staff call you in order, and the whole party must be present. Solo diners have their own counter seats and skip the line. Parking only during meal times, 2,000 won. For visitors, the one-person gamja-guk is easier to order than the two-person minimum pot, and the house ritual is to finish by frying rice in the leftover broth for 4,000 won.
 
-(2) Wonjo Manseon Hof — 19 Euljiro 13-gil, Jung-gu, Seoul; 02-2274-1040. Two minutes on foot from Euljiro 3-ga Station exit 4, in the Nogari Alley. Opens at noon daily; sources disagree on closing time, some saying midnight and others 3 a.m. No reservations, no parking. Nogari (dried pollack) is 2,000 won, hwangtae 2,000 won, half a garlic chicken around 10,000 won, and 500cc draft beer is 5,000 won on the first and second floors, 5,500 won on the rooftop. Everyone wants the rooftop, reached by stairs only, so a line forms on the staircase after 6 p.m. There is no app queue: just stand in line. Order from your table, tear the nogari apart with your hands and dip it in the gochujang-mayonnaise sauce, and ask about indoor seating if the stairs are a problem.
+(2) Wonjo Manseon Hof — 19 Euljiro 13-gil, Jung-gu, Seoul; 02-2274-1040. Two minutes on foot from Euljiro 3-ga Station exit 4, in the Nogari Alley. Opens at noon daily; sources disagree on closing time, some saying midnight and others 3 a.m. No reservations, no parking. Nogari (dried pollack) is 2,000 won, hwangtae 2,000 won, half a garlic chicken around 10,000 won, and 500cc draft beer runs 5,000 won on the first and second floors and 5,500 won on the rooftop, as visitors reported in autumn 2026. Everyone wants the rooftop, reached by stairs only, so a line forms on the staircase after 6 p.m. There is no app queue: just stand in line. Order from your table, tear the nogari apart with your hands and dip it in the gochujang-mayonnaise sauce, and ask about indoor seating if the stairs are a problem.
 
 (3) Andongjang — 124 Euljiro, Jung-gu, Seoul; 02-2266-3814. One minute from Euljiro 3-ga Station exit 10. Opened around 1948 and now run by the third generation, it is listed as Seoul's oldest Chinese restaurant on the Seoul Future Heritage register (2013-175). Hours are 11:30 to 21:00, open daily, according to the Korea Tourism Organization; some map services list a 20:30 close. No parking. Oyster jjamppong is 12,000-13,000 won, samseon udon 11,000 won, jajangmyeon 9,000 won and fried dumplings 9,000 won. Reservations are taken by phone only for parties of six or more. The signature oyster jjamppong is built on garlic and oysters rather than pure heat, so it suits people who find regular jjamppong too spicy.
 
 7. What is confirmed and what is not
-Confirmed: the six convenience-store prices and promo periods come from the companies' press releases (GS Retail 16 and 19 November; BGF Retail 5, 9 and 26 November; Korea Seven 12, 15 and 17 November) and from store labels in their press photos; the restaurants' addresses, phone numbers and hours come from the Korea Tourism Organization, VisitSeoul and map services as of 27 November 2026.
+Confirmed: the promo periods and most prices come from the companies' press releases (GS Retail 16 and 19 November; BGF Retail 5, 9 and 26 November; Korea Seven 12, 15 and 17 November) and from store labels in their press photos. CU's strawberry choco castella sand (5,500 won) and some cheese-line prices were not printed in the releases, so those figures are cross-checked against retail media and new-product trackers. The restaurants' addresses, phone numbers and hours come from the Korea Tourism Organization, VisitSeoul and map services as of 27 November 2026.
 Not confirmed: the price of Fruit Milk Whip Sand, the December release date of Strawberry Milk Whip Sand, Manseon Hof's closing time, whether Andongjang has a break time, and whether Manseon Hof takes cards. Check the store or a map app once more before you go."""
 
 JA = """今週ソウルのコンビニ3社（GS25・CU・セブンイレブン）が発表した公式リリースをもとに、いま実際に買う価値のある新商品6つと組み合わせ価格を整理しました。あわせて、聖水（ソンス）と乙支路（ウルジロ）で外国人客にも人気のローカル食堂3軒の場所・営業時間・注文のしかたを付けています。価格と営業時間はすべて2026年11月27日時点です。
@@ -179,12 +179,12 @@ CUの冬の稼ぎ頭はいちごサンドです。11月6日に「いちごチョ
 6. 聖水・乙支路のローカル食堂3軒
 (1) ソムナン聖水カムジャタン — ソウル市城東区ヨンムジャンギル45、02-465-6580。聖水駅4番出口から229m、年中無休24時間。1人用カムジャグクは並12,000ウォン・ウゴジ（干し大根の葉）入り13,000ウォン、カムジャタンは小32,000・中37,000・大49,000ウォン、手打ちスジェビ4,000ウォン。予約も番号札もありません。待合席に座れば順番に案内され、全員そろわないと入れません。1人なら専用のカウンター席にすぐ案内されます。駐車は食事時間のみ可、管理費2,000ウォン。外国人には2人前以上必要なカムジャタンより1人用カムジャグクが頼みやすく、残ったスープに4,000ウォンのポックンパ（炒めご飯）を炒めるのがこの店の締め方です。
 
-(2) 元祖マンソンホフ — ソウル市中区ウルジロ13ギル19、02-2274-1040。乙支路3街駅4番出口から徒歩2分、乙支路ノガリ横丁。毎日昼12時開店で、閉店時刻は資料により深夜0時と午前3時に分かれます。予約・駐車不可。ノガリ2,000ウォン、ファンテ2,000ウォン、ニンニクチキン半羽1万ウォン前後、生ビール500ccが1・2階5,000ウォン、屋上5,500ウォン。皆が座るのは階段でしか上がれない屋上なので、18時を過ぎると階段に列ができます。アプリ順番待ちはなく、そのまま並べばOK。注文は席でスタッフに伝え、ノガリは手で裂いてコチュジャンとマヨネーズのソースにつけて食べます。階段がつらければ1・2階の店内席を聞いてみてください。
+(2) 元祖マンソンホフ — ソウル市中区ウルジロ13ギル19、02-2274-1040。乙支路3街駅4番出口から徒歩2分、乙支路ノガリ横丁。毎日昼12時開店で、閉店時刻は資料により深夜0時と午前3時に分かれます。予約・駐車不可。ノガリ2,000ウォン、ファンテ2,000ウォン、ニンニクチキン半羽1万ウォン前後、生ビール500ccは1・2階5,000ウォン・屋上5,500ウォン（2026年秋の訪問記ベース）。皆が座るのは階段でしか上がれない屋上なので、18時を過ぎると階段に列ができます。アプリ順番待ちはなく、そのまま並べばOK。注文は席でスタッフに伝え、ノガリは手で裂いてコチュジャンとマヨネーズのソースにつけて食べます。階段がつらければ1・2階の店内席を聞いてみてください。
 
 (3) 安東荘（アンドンジャン） — ソウル市中区ウルジロ124、02-2266-3814。乙支路3街駅10番出口から1分。1948年頃に開業し3代続く中華料理店で、ソウル未来遺産（2013-175）に「ソウルで最も古い中華料理店」として紹介されています。営業は11:30〜21:00、年中無休（韓国観光公社基準）で、地図サービスには20:30閉店と表示するものもあります。駐車不可。カキチャンポン12,000〜13,000ウォン、三鮮うどん11,000ウォン、ジャージャー麺9,000ウォン、焼き餃子9,000ウォン。予約は6人以上の電話のみで、それ未満は当日待ちです。ニンニクとカキを使ったカキチャンポンが看板なので、辛いチャンポンが苦手な人にも食べやすいです。
 
 7. 確認できたこと・できていないこと
-確認できたこと：コンビニ6商品の価格とキャンペーン期間は各社リリース（GSリテール11月16日・19日、BGFリテール11月5日・9日・26日、コリアセブン11月12日・15日・17日）と店頭表示の写真、食堂3軒の住所・電話・営業時間は韓国観光公社・ソウル観光（VisitSeoul）と地図サービスの2026年11月27日時点の値です。
+確認できたこと：キャンペーン期間とほとんどの価格は各社リリース（GSリテール11月16日・19日、BGFリテール11月5日・9日・26日、コリアセブン11月12日・15日・17日）とリリース写真の店頭表示で確認しました。CUのいちごチョコカステラサンド（5,500ウォン）とチーズシリーズの一部価格はリリースに数字がなく、流通メディアと新商品データサイトの表示を突き合わせて記載しています。食堂3軒の住所・電話・営業時間は韓国観光公社・ソウル観光（VisitSeoul）と地図サービスの2026年11月27日時点の値です。
 確認できていないこと：「フルーツミルクホイップサンド」の価格、12月「いちごミルクホイップサンド」の発売日、マンソンホフの閉店時刻、安東荘の休憩時間の有無、マンソンホフのカード決済可否。訪れる前に店か地図アプリでもう一度確認するのが安全です。"""
 
 ZH = """以下以首尔三大便利店（GS25、CU、7-Eleven）本周的官方新闻稿为依据，整理了现在真正值得买的6款新品和组合价，另附圣水洞与乙支路3家当地人常去、外国游客也多的餐厅地址、营业时间和点单方式。价格和营业时间均截至2026年11月27日。
@@ -221,12 +221,12 @@ CU冬季的主力是鲜草莓三明治。11月6日“草莓巧克力奶油卡斯
 6. 圣水洞·乙支路3家本地餐厅
 (1) 有名圣水土豆排骨汤 — 首尔城东区练武场街45，02-465-6580。圣水站4号出口229米，全年无休24小时。单人土豆汤饭原味12,000韩元、加干萝卜叶13,000韩元；土豆排骨汤小份32,000、中份37,000、大份49,000韩元，手工面片4,000韩元。不接受预约，也没有号码牌：坐在等候区，店员按顺序叫号，必须同行人全部到齐才能入场。一个人可直接去单人吧台席，不用排队。停车仅限用餐时间，收管理费2,000韩元。对外国游客来说，两人份起点的排骨汤不如单人土豆汤饭好点；当地人标准的收尾是在剩汤里加4,000韩元的炒饭。
 
-(2) 元祖万善Hof — 首尔中区乙支路13街19，02-2274-1040。乙支路3街站4号出口步行2分钟，就在乙支路烤干明太鱼（노가리）胡同。每天中午12点开门，关门时间资料不一，有的写午夜、有的写凌晨3点。不接受预约，不能停车。烤干明太鱼2,000韩元、干明太鱼2,000韩元、蒜香炸鸡半只约1万韩元，500cc生啤一二层5,000韩元、顶层5,500韩元。大家都坐只能走楼梯上去的顶层露台，过了下午6点楼梯上就排队。没有App排号，直接排队即可。点单在座位上叫店员，干明太鱼用手撕开蘸辣椒酱蛋黄酱吃。楼梯不方便的话可以问一二层的室内座位。
+(2) 元祖万善Hof — 首尔中区乙支路13街19，02-2274-1040。乙支路3街站4号出口步行2分钟，就在乙支路烤干明太鱼（노가리）胡同。每天中午12点开门，关门时间资料不一，有的写午夜、有的写凌晨3点。不接受预约，不能停车。烤干明太鱼2,000韩元、干明太鱼2,000韩元、蒜香炸鸡半只约1万韩元，500cc生啤一二层5,000韩元、顶层5,500韩元（据2026年秋季顾客记录）。大家都坐只能走楼梯上去的顶层露台，过了下午6点楼梯上就排队。没有App排号，直接排队即可。点单在座位上叫店员，干明太鱼用手撕开蘸辣椒酱蛋黄酱吃。楼梯不方便的话可以问一二层的室内座位。
 
 (3) 安东庄 — 首尔中区乙支路124，02-2266-3814。乙支路3街站10号出口1分钟。1948年前后开业、传至第三代的中餐厅，被首尔未来遗产（2013-175）介绍为“首尔最古老的中餐厅”。营业时间11:30至21:00、全年无休（韩国观光公社标准），部分地图应用标为20:30结束。不可停车。牡蛎海鲜面12,000至13,000韩元、三鲜乌冬11,000韩元、炸酱面9,000韩元、煎饺9,000韩元。预约只接受6人以上电话预订，其余现场等位。招牌是加了蒜和牡蛎的牡蛎海鲜面，怕辣的人也能吃。
 
 7. 已确认与未确认
-已确认：6款便利店商品的价格与活动期间来自各公司新闻稿（GS零售11月16日、19日，BGF零售11月5日、9日、26日，Korea Seven 11月12日、15日、17日）和新闻稿照片中的门店标价；3家餐厅的地址、电话、营业时间来自韩国观光公社、首尔观光（VisitSeoul）和地图服务2026年11月27日的数值。
+已确认：活动期间与大部分价格来自各公司新闻稿（GS零售11月16日、19日，BGF零售11月5日、9日、26日，Korea Seven 11月12日、15日、17日）以及新闻稿照片中的门店标价。CU草莓巧克力卡斯特拉三明治（5,500韩元）与芝士系列部分价格新闻稿未写数字，已与流通媒体及新品数据站点的标价核对。3家餐厅的地址、电话、营业时间来自韩国观光公社、首尔观光（VisitSeoul）和地图服务2026年11月27日的数值。
 未确认：“水果牛奶奶油三明治”的价格、12月“草莓牛奶奶油三明治”的上市日期、万善Hof的关门时间、安东庄是否有休息时间、万善Hof能否刷卡。出发前在门店或地图应用再确认一次更稳妥。"""
 
 POST = {
@@ -239,7 +239,7 @@ POST = {
     "releaseDate": "2026-11-27",
     "rating": 5,
     "imageUrl": C,
-    "images": [C, G1, G2, G3, G4, G5, G6],
+    "images": [G1, G2, G3, G4, G5, G6],
     "affiliateUrl": "https://signal.k-trand.store",
     "affiliatePlatform": "ConvenienceStore",
     "i18n": {
